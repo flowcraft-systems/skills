@@ -1,8 +1,13 @@
-# the project AI Agent Toolkit — Developer User Guide
+# FlowCraft Skills
 
-> **Version:** 2.0 · **Last updated:** 2026-07-14
->
-> This guide covers the the project agent ecosystem — **21 reusable skills** and **13 specialized agents** — how they compose together, and how to use them for maximum productivity.
+> **17 skill playbooks. 13 specialized AI agents. One command to install.**
+
+[![npm](https://img.shields.io/npm/v/@flowcraft.systems/skills)](https://www.npmjs.com/package/@flowcraft.systems/skills)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
+
+FlowCraft Skills plugs a coordinated AI engineering crew into your GitHub Copilot workspace. Each agent is a specialist — bug investigator, patch engineer, architect coach, code reviewer, test designer, customer communicator. They enforce quality gates, chain together automatically, and post structured artifacts directly to your Jira issues and GitHub PRs.
+
+> **v2.0** · April 2026
 
 ---
 
@@ -49,9 +54,30 @@ flowcraft-skills install
 
 ---
 
+## What You Get
+
+**17 skill playbooks** that encode proven engineering methodologies — load any skill directly in GitHub Copilot for instant structured guidance, or let agents compose them automatically into multi-pass workflows.
+
+**13 specialized AI agents** covering the full software engineering lifecycle:
+
+| Agent | What it delivers |
+|-------|------------------|
+| **Bug Byomkesh** | Root cause analysis — evidence-cited hypotheses, blast-radius analysis, and findings posted to Jira |
+| **Bug Sushruta** | TDD patch engineer — writes failing tests first, applies minimal fix, handles feature flags |
+| **Design Vishwakarma** | Architect coach — design options, ADRs, and fitness functions before a line of code is written |
+| **Dronacharya** | Code review mentor — PR alignment review posted directly to GitHub + Jira, mentor tone |
+| **Test Case Chanakya** | QA test designer — risk-based test suites synced to your test management system |
+| **Narada** | Customer communicator — jargon-free incident briefings for non-technical stakeholders |
+| **Incident RCA Reviewer** | CloudOps auditor — independent forensic review of production incident RCAs |
+
+Every primary agent ships with a paired **Reviewer agent** that adversarially scores its output before anything is posted — quality gates built in, not bolted on.
+
+---
+
 ## Table of Contents
 
-- [Architecture Philosophy](#architecture-philosophy)
+- [What You Get](#what-you-get)
+- [How It Works](#how-it-works)
 - [Agent Ecosystem Overview](#agent-ecosystem-overview)
 - [Visual Workflow Map](#visual-workflow-map)
 - [Skills Catalog](#skills-catalog)
@@ -77,9 +103,9 @@ flowcraft-skills install
 
 ---
 
-## Architecture Philosophy
+## How It Works
 
-The the project toolkit is built on a **skills-first architecture**: skills are the reusable building blocks; agents are the orchestrators that compose them.
+FlowCraft Skills is built on a **skills-first architecture**: skills are the reusable building blocks; agents are the orchestrators that compose them.
 
 ### Skills: Independent Playbooks
 
@@ -131,7 +157,7 @@ You get structured hypotheses in seconds. If the bug looks complex enough to war
 
 ## Agent Ecosystem Overview
 
-The the project agent toolkit is a set of **specialized AI agents** that work together as a software engineering team. Each agent has a focused role, specific tools, and well-defined inputs/outputs. Agents can invoke each other as subagents and pass artifacts through the file system and Jira.
+FlowCraft Skills ships a set of **specialized AI agents** that work together as a software engineering team. Each agent has a focused role, specific tools, and well-defined inputs/outputs. Agents invoke each other as subagents and pass structured artifacts through the file system and Jira.
 
 | Agent | Role | Inputs | Outputs | Writes to Jira? | Writes to GitHub? |
 |-------|------|--------|---------|-----------------|-------------------|
@@ -145,7 +171,7 @@ The the project agent toolkit is a set of **specialized AI agents** that work to
 | **Incident RCA Reviewer** | CloudOps RCA audit | RCA doc path | Scored review + PASS/CONDITIONAL/FAIL | Yes (chunked) | No |
 | **Narada** | Customer-facing briefing | Jira ID | Plain-language briefing draft + final, Jira comments | Yes (chunked) | No |
 | **Narada Reviewer** | Briefing quality gate | Jira ID + draft path | YAML scored review + approval/rejection | No (unless approved) | No |
-| **Test Case Chanakya** | QA test design | Jira ID / design packet / RCA report | Test cases in the test management system + test design report | Yes (link) | No |
+| **Test Case Chanakya** | QA test design | Jira ID / design packet / RCA report | Test cases in your test management system + test design report | Yes (link) | No |
 | **Test Case Chanakya Reviewer** | Test design quality gate | Test design report path | YAML scored review | No | No |
 | **Agent Test: Bug Byomkesh** | Performance evaluator for fc-bug-byomkesh | Jira ID (resolved) + RCA path(s) | Scored eval report + improvement directives | Optional | No |
 
@@ -231,7 +257,7 @@ flowchart LR
         BSU["Bug Sushruta"]
         DS["Design Vishwakarma"]
         CC["Dronacharya"]
-        TCW["Test Case<br/>Wizard"]
+        TCW["Test Case<br/>Chanakya"]
     end
 
     subgraph "Artifact Store"
@@ -246,7 +272,7 @@ flowchart LR
     subgraph "External Systems"
         JIRA["Jira (Atlassian)"]
         GH["GitHub PRs"]
-        TMS["the test management system"]
+        TMS["Test Mgmt\nSystem"]
     end
 
     BS -->|"writes"| RCA
@@ -347,7 +373,7 @@ flowchart LR
 | D3 | Evidence Quality | File path + line citations, bias detection, counter-evidence search |
 | D4 | Confidence Calibration | Does claimed confidence match actual evidence? |
 | D5 | Corrective Actions | Specific, minimal, complete, with rollback plan |
-| D6 | Blast-Radius Depth | Dependency scan, the project-specific risks, actionable mitigations |
+| D6 | Blast-Radius Depth | Dependency scan, project-specific risks, actionable mitigations |
 | D7 | Preventive Actions | Prevents the *class* of bug, measurable, proportional |
 | D8 | Communication | Jira comment is accurate, actionable, professional |
 | D9 | PR Alignment Review | (Optional) Independence verified, alignment accurate, tone constructive |
@@ -389,7 +415,7 @@ flowchart LR
 
 - **TDD strict**: Will not patch without a failing test first
 - **Testing theater detection**: Checks every test against 7 common anti-patterns (tautological, mock-dominated, etc.)
-- **Feature flag integration**: Knows the the project feature flag schema and registration surfaces
+- **Feature flag integration**: Knows your feature flag schema and registration surfaces
 - **Legacy-safe techniques**: Sprout Method, Wrap Method, Characterization Tests, Seam Identification
 - **Creates fix branches** in submodules: `fix/{jira-id}--{slug}`
 
@@ -540,7 +566,7 @@ flowchart LR
 3. **PASS 2 — Code Evidence**: Searches codebase for every endpoint/class/method cited. Verifies claims against actual code.
 4. **PASS 3 — Git Forensics**: `git blame`, `git log`, commit velocity analysis around incident window.
 5. **PASS 4 — Infrastructure Correlation**: Azure Activity Log for deployments/config changes in 48h window.
-6. **PASS 5 — Competing Hypotheses**: Generates 3+ alternative explanations, probes the project-specific blind spots.
+6. **PASS 5 — Competing Hypotheses**: Generates 3+ alternative explanations, probes domain-specific blind spots.
 
 #### Key features
 
@@ -626,7 +652,7 @@ flowchart LR
 | **File** | `fc-test-case-chanakya.agent.md` |
 | **Personality** | Senior QA engineer — risk-focused, methodology-driven, automation-first |
 | **When to use** | You need test cases for a new feature, bug fix, regression suite, or exploratory charter |
-| **Output** | Test cases in the test management system + test design report at `case-files/test-design/{date}--{id}--{slug}/test-design-report.md` |
+| **Output** | Test cases in your test management system + test design report at `case-files/test-design/{date}--{id}--{slug}/test-design-report.md` |
 
 #### How to invoke
 
@@ -642,7 +668,7 @@ flowchart LR
 2. **PASS 1 — Risk Assessment**: Scores each component on Likelihood × Impact (1–5 each). Classifies into tiers: 🔴 Critical (15–25), 🟠 High (10–14), 🟡 Moderate (6–9), 🟢 Low (1–5).
 3. **PASS 2 — Methodology Selection**: Picks the right testing approach per risk area — state transitions for workflows, boundary value analysis for inputs, context-driven for integrations, exploratory charters for unfamiliar areas.
 4. **PASS 3 — Test Case Design**: Writes structured test cases with deterministic steps and verifiable expected results. Cross-references against the existing coverage map from PASS 0.
-5. **PASS 4 — test management system Sync**: Creates test cases in the test management system. Links back to Jira. Tags all cases with `fc-test-case-chanakya`. Creates shared steps for repeated sequences.
+5. **PASS 4 — Test Management Sync**: Creates test cases in your test management system. Links back to Jira. Tags all cases with `fc-test-case-chanakya`. Creates shared steps for repeated sequences.
 
 **Auto-review**: Test Case Chanakya automatically invokes Test Case Chanakya Reviewer.
 
@@ -650,7 +676,7 @@ flowchart LR
 
 - **Multi-methodology**: Combines Risk-Based, BDD, Model-Based, Context-Driven, and Exploratory testing
 - **Deduplication**: Scans 18,000+ existing test cases before creating new ones
-- **Team convention alignment**: Matches existing the project test management field conventions (null descriptions OK for low-risk, simple tags, no custom fields)
+- **Team convention alignment**: Matches existing test management field conventions (null descriptions OK for low-risk, simple tags, no custom fields)
 - **Automation-first**: Every case is written to be automatable unless explicitly manual-only
 - **Jira traceability**: Every case is linked to its source Jira issue via the external issue link API
 
@@ -685,7 +711,7 @@ flowchart LR
 | D8 | Jira Traceability | All cases linked to source Jira issue(s) |
 | D9 | Automation Readiness | Cases are automatable, shared steps used for repetition |
 
-**Key constraint**: Read-only in the test management system — never creates, updates, or deletes anything.
+**Key constraint**: Read-only in your test management system — never creates, updates, or deletes anything.
 
 ---
 
@@ -826,7 +852,7 @@ Dronacharya (standalone)
 Bug Byomkesh → (auto) Reviewer → Test Case Chanakya → (auto) Reviewer
 ```
 
-**When**: A bug was diagnosed and you want regression test cases in the test management system covering the root cause and blast-radius items.
+**When**: A bug was diagnosed and you want regression test cases in your test management system covering the root cause and blast-radius items.
 
 **How to run**:
 ```
@@ -896,11 +922,6 @@ All skills live in `.github/skills/<name>/SKILL.md`. Each is an independently us
 | Skill | File | Standalone Use | Used By Agents |
 |-------|------|---------------|----------------|
 | **Adversarial Review** | `adversarial-review/` | Dimension-based scoring, YAML verdict format, finding classification | All 5 reviewer agents |
-
-### the project-Specific Skills
-
-| Skill | File | Standalone Use | Used By Agents |
-|-------|------|---------------|----------------|
 
 ### Utility Skills
 
@@ -1086,7 +1107,7 @@ Generate test cases covering the root cause, all blast-radius items,
 and the preventive actions from the RCA.
 ```
 
-Test Case Chanakya deduplicates against the existing 18,000+ cases in the test management system before creating new ones.
+Test Case Chanakya deduplicates against existing cases in your test management system before creating new ones.
 
 ### 12. Skills-First Workflow — Save Premium Requests
 
