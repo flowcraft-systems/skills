@@ -6,6 +6,49 @@
 
 ---
 
+## Installation
+
+Add FlowCraft agents and skills to your repo with a single command — no global install needed:
+
+```bash
+npx @flowcraft.systems/skills install
+```
+
+This copies `.github/agents/` and `.github/skills/` into your current directory. Commit the result so your whole team benefits automatically.
+
+### Common options
+
+```bash
+# Preview what will be installed without writing anything
+npx @flowcraft.systems/skills install --dry-run
+
+# Install into a specific project directory
+npx @flowcraft.systems/skills install --dest ~/projects/my-app
+
+# Overwrite files that already exist (re-install / upgrade)
+npx @flowcraft.systems/skills install --force
+
+# Skills only — skip agent persona files
+npx @flowcraft.systems/skills install --skills-only
+
+# Agents only — skip skill SKILL.md files
+npx @flowcraft.systems/skills install --agents-only
+
+# See what's bundled before installing
+npx @flowcraft.systems/skills list
+```
+
+### Global install (optional)
+
+```bash
+npm install -g @flowcraft.systems/skills
+flowcraft-skills install
+```
+
+> **Requirements:** Node.js ≥ 18
+
+---
+
 ## Table of Contents
 
 - [Architecture Philosophy](#architecture-philosophy)

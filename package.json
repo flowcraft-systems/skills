@@ -13,7 +13,7 @@
   "license": "MIT",
   "author": "FlowCraft Systems",
   "bin": {
-    "flowcraft-skills": "./bin/cli.js"
+    "flowcraft-skills": "bin/cli.js"
   },
   "files": [
     "bin/",
