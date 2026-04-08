@@ -1,0 +1,8 @@
+# Files excluded from the npm package
+# (The "files" field in package.json already acts as an allowlist,
+#  but .npmignore is honoured if present — this is belt-and-suspenders.)
+
+.git/
+*.log
+*.tmp
+.DS_Store
