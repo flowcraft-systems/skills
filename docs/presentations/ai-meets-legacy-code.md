@@ -291,6 +291,43 @@ AI started reducing the **cost of understanding**.
 
 ---
 
+## Real world — Apache DevLake, in the open
+
+**Bug:** [GitHub #8708](https://github.com/apache/incubator-devlake/issues/8708) — severity P0. Every Bitbucket PR sync fails with a `time.ParseError` after a routine feature merge. Blocks all users upgrading to v1.0.3-beta9.
+
+`fc-bug-byomkesh` ran against the open-source repo and posted the full RCA as a **public GitHub comment**:
+
+- 4 ranked, falsifiable hypotheses with confidence scores
+- 9-piece evidence ledger — every claim tied to a file and line number
+- Toyota 5 Whys tracing a **latent 2023 regex defect** activated by a December 2025 PR
+- Blast-radius analysis across 60+ usages of the shared `Iso8601Time` type
+- Corrective actions with working Go code and rollback instructions
+- Preventive actions covering test gaps, lint rules, and documentation
+- PR alignment review of the contributor's independent fix
+
+All of it visible at: `github.com/apache/incubator-devlake/issues/8708#issuecomment-4205251356`
+
+---
+
+## 23 minutes, not 7 hours
+
+| Task | Human estimate | Agent |
+| --- | --- | --- |
+| Bug triage + issue intake | 30 min | < 1 min |
+| Code tracing, hypotheses, blame analysis | 3–4 hrs | ~10 min |
+| `iso8601time.go` regex forensics + Go time research | 2 hrs | included |
+| Corrective/preventive planning + blast-radius | 1–2 hrs | ~5 min |
+| Fix implementation + test writing | 30–60 min | ~5 min |
+| PR alignment review | 45 min | ~2 min |
+| **Total** | **7–9 hours** | **~23 minutes** |
+
+> "A developer under production pressure would likely spend 4–6 hours before finding the correct `DateTimeFormats` entry — and might fix only half the root cause, leaving the issue partially unresolved."
+
+That is the **human under duress** counterfactual.  
+That is the baseline this raises.
+
+---
+
 ## The leverage was not "10x coding"
 
 The leverage showed up somewhere more important:
