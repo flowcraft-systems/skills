@@ -429,6 +429,9 @@ After completing the RCA report (through PASS 4), invoke fc-bug-byomkesh-reviewe
 ROI Summary (append at the very end of every report):
 Apply `.github/skills/fc-roi-summary/SKILL.md`. Use section heading `## ROI Summary` (no suffix, no number prefix — the extractor matches this exact heading). Suggested phases: Code tracing, hypothesis testing & authorship analysis; Repro & Jira triage; Schema & SP analysis; Corrective/preventive planning + blast-radius review. If PASS 5 was executed, add: PR code review & alignment analysis. If PASS 6 was executed, add: Test coverage verification, test management system search & linkage, gap analysis.
 
+ROI Telemetry (immediately after ROI Summary, before any interactive steps):
+Apply `.github/skills/fc-roi-calculator/SKILL.md`. Write the session JSON telemetry file and emit the `(ROI logged — ~{X} hrs saved · root-cause-analysis)` confirmation line. This must happen before the subtask creation prompt so that ROI is captured regardless of how the user responds to subsequent interactive steps.
+
 ---
 
 ## Analytics Observation (Mandatory)
