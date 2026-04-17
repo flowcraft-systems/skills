@@ -4,7 +4,7 @@ name: fc-bug-sushruta-reviewer
 description: >
   Adversarial reviewer for fc-bug-sushruta Patch Reports. Validates TDD discipline, patch safety, feature flag correctness,
   blast-radius coverage, and deployment readiness. Produces structured YAML review that gates merge approval.
-argument-hint: patch_report_path (e.g. case-files/patches/2026-03-04--PROJ-XXXXX--edi-claim-denial-rendering-provider-medica/patch-report.md)
+argument-hint: patch_report_path (e.g. .flowcraft/case-files/patches/2026-03-04--PROJ-XXXXX--edi-claim-denial-rendering-provider-medica/patch-report.md)
 tools: ['vscode', 'read', 'search', 'agent']
 ---
 

@@ -5,7 +5,7 @@ description: >
   Adversarial reviewer for fc-design-vishwakarma architect review packets. Validates evidence quality, option balance,
   fitness function feasibility, FHIR alignment, and ADR decision framing. Produces structured YAML review
   that gates handoff to implementation.
-argument-hint: packet_path (e.g. case-files/software-design-and-arch/c360-37798-time-tracking-row-limit/architect-review-packet.md)
+argument-hint: packet_path (e.g. .flowcraft/case-files/software-design-and-arch/c360-37798-time-tracking-row-limit/architect-review-packet.md)
 tools: ['vscode', 'read', 'search', 'agent']
 ---
 

@@ -6,7 +6,7 @@ description: >
   boundary coverage, data specificity, Jira traceability, automation readiness). Produces a scored YAML
   verdict with actionable findings. Use after fc-test-case-chanakya completes a test design.
 argument-hint: >
-  Path to the test design report produced by fc-test-case-chanakya (e.g. case-files/test-design/2026-03-18--PROJ-XXXXX--visit-scheduling/test-design-report.md).
+  Path to the test design report produced by fc-test-case-chanakya (e.g. .flowcraft/case-files/test-design/2026-03-18--PROJ-XXXXX--visit-scheduling/test-design-report.md).
 
 tools: [vscode/askQuestions, vscode/memory, read/problems, read/readFile, read/terminalSelection, agent/runSubagent, search/changes, search/codebase, search/fileSearch, search/listDirectory, search/searchResults, search/textSearch, search/searchSubagent, search/usages, web/fetch, todo]
 ---

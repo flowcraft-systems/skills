@@ -311,7 +311,7 @@ The the project project already has ~27 shared steps (primarily login/navigation
 
 **Goal**: Produce a summary report for the test design.
 
-**Output destination**: Write to `./case-files/test-design/` with a sensible folder name derived from the feature source.
+**Output destination**: Write to `./.flowcraft/case-files/test-design/` with a sensible folder name derived from the feature source.
 
 **Report structure**:
 ```markdown

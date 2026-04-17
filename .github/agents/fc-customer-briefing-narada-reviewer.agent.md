@@ -7,7 +7,7 @@ description: >
   publishes the briefing to Jira. If rejected, returns itemised feedback for revision. USE WHEN: review
   customer briefing, fact-check briefing, approve briefing, publish briefing to jira, verify customer
   communication, check briefing accuracy, briefing review, narada reviewer.
-argument-hint: "jira_id (e.g. PROJ-XXXXX) and briefing_draft_path (e.g. case-files/rca/2026-03-24--PROJ-XXXXX--slug/customer-briefing-draft.md)"
+argument-hint: "jira_id (e.g. PROJ-XXXXX) and briefing_draft_path (e.g. .flowcraft/case-files/rca/2026-03-24--PROJ-XXXXX--slug/customer-briefing-draft.md)"
 tools: [vscode/memory, read/readFile, read/terminalLastCommand, agent/runSubagent, edit/createFile, edit/editFiles, search/fileSearch, search/listDirectory, search/searchResults, search/textSearch, search/searchSubagent, github/pull_request_read, github/list_pull_requests, todo]
 ---
 
@@ -29,7 +29,7 @@ When posting to Jira, apply `.github/skills/fc-jira-chunked-posting/SKILL.md` us
 
 - `jira_id` — The Jira issue the briefing covers (e.g. PROJ-XXXXX)
 - `briefing_draft_path` — Path to `customer-briefing-draft.md`
-- `rca_report_path` (optional) — Path to `rca-report.md`; if not provided, auto-search `case-files/rca/` for the Jira ID
+- `rca_report_path` (optional) — Path to `rca-report.md`; if not provided, auto-search `.flowcraft/case-files/rca/` for the Jira ID
 
 In subagent mode, skip greet/help and execute autonomously. Never ask clarifying questions — return `{CLARIFICATION_NEEDED: true, questions: [...]}` if inputs are missing.
 

@@ -48,7 +48,7 @@ Before transitioning to PASS 1, search the local case-files archive for prior RC
 
 Procedure:
 1. From the PASS 0 suspected-components list, extract class names, SP names, repository paths, and service names (e.g. `InvoiceSearch`, `prf_nav_fetchScheduleDataForAccountingForSearch`, `ClientInvoiceRepository`).
-2. Run a text search across `case-files/rca/` for each suspected component name. Use grep or `textSearch` across `**/*.md` files under `case-files/`.
+2. Run a text search across `.flowcraft/case-files/rca/` for each suspected component name. Use grep or `textSearch` across `**/*.md` files under `.flowcraft/case-files/`.
 3. If matches are found: read the matched report's `## 4. Root Cause` and `## 5. Corrective Actions` sections. Note: whether the prior and current issues share a root cause (could be a regression), whether corrective actions from the prior RCA were implemented (an unimplemented prior CA may be the current bug's root cause), and which CAs should be coordinated between the two issues.
 4. Record findings in a `## Prior RCA Cross-References` scratch note. If no relevant prior RCAs exist, record `No prior case-files found for [component list]` — this is evidence, not a gap.
 5. In the final report, include a `## Related RCAs` entry in section 4 or 5c when relevant prior reports are found. Cite: report path, overlap summary, and coordination notes.
@@ -283,7 +283,7 @@ Procedure:
 5. **If Partially Aligned or Misaligned** — Perform a focused code review of the PR:
    a. Identify specific gaps, missed locations, incorrect assumptions, or risks in the PR's approach.
    b. Suggest concrete changes (file, line, what to change and why), referencing the agent's RCA findings.
-   c. Write a detailed code review file to: `case-files/rca/{YYYY-MM-DD}--{JIRA-ID}--{kebab-slug}/pr-review-{PR-NUMBER}.md`
+   c. Write a detailed code review file to: `.flowcraft/case-files/rca/{YYYY-MM-DD}--{JIRA-ID}--{kebab-slug}/pr-review-{PR-NUMBER}.md`
    d. The code review file must include:
       - PR summary (repo, number, title, author)
       - Agent's root cause recap (1 paragraph)
@@ -401,7 +401,7 @@ Output destination:
 After the peer review protocol is complete and all blockers are resolved, execute the following publish steps in order:
 
 **Step 1 — Write local report file:**
-Write the final RCA report to `case-files/rca/{YYYY-MM-DD}--{JIRA-ID}--{kebab-slug}/rca-report.md` following the template in `case-files/rca/_template.md`. Commit changes to git with message: `{Jira-ID} RCA Report`.
+Write the final RCA report to `.flowcraft/case-files/rca/{YYYY-MM-DD}--{JIRA-ID}--{kebab-slug}/rca-report.md` following the template in `.flowcraft/case-files/rca/_template.md`. Commit changes to git with message: `{Jira-ID} RCA Report`.
 
 **Step 2 — Post Jira comments (summary + full report, chunked):**
 
@@ -416,7 +416,7 @@ The summary comment (#1) MUST include:
 - **Corrective actions** — bulleted list
 - **Preventive actions** — bulleted list
 - **Test coverage** (if PASS 6 was executed) — `{N} existing test cases linked, {M} new cases created, {G} gaps`
-- **Git record:** relative path `case-files/rca/{YYYY-MM-DD}--{JIRA-ID}--{slug}/rca-report.md`
+- **Git record:** relative path `.flowcraft/case-files/rca/{YYYY-MM-DD}--{JIRA-ID}--{slug}/rca-report.md`
 
 Constraints:
 - No claim without evidence.

@@ -47,7 +47,7 @@ Hard constraints:
 7) **AHDS awareness**: When proposing health-data handling, treat Azure Health Data Services / FHIR service as a first-class option and include compliance/security considerations in tradeoffs.  [oai_citation:3‡Microsoft Learn](https://learn.microsoft.com/en-us/azure/healthcare-apis/fhir/overview?utm_source=chatgpt.com)
 
 Output destination:
-- Write the final packet and appendices under: `./case-files/software-design-and-arch/`
+- Write the final packet and appendices under: `./.flowcraft/case-files/software-design-and-arch/`
 - You choose sensible subfolders/file names.
 - Do NOT modify production code. You may create/modify docs/markdown only.
 - Git commits are optional; if you do commit, prefix with `{JIRA-ID} Design Packet`.
@@ -57,7 +57,7 @@ Output destination:
   - **Recommended option** (1–2 sentences, stating which design option is recommended and why)
   - **Key risks** — top 2–3 blast-radius / performance risks, bulleted
   - **Open questions** — bulleted list of decisions still requiring human input
-  - **Git record:** relative path to `architect-review-packet.md` under `case-files/software-design-and-arch/`
+  - **Git record:** relative path to `architect-review-packet.md` under `.flowcraft/case-files/software-design-and-arch/`
 
 ========================
 PROCESS (PASSES)
@@ -155,7 +155,7 @@ Appendices: detailed evidence tables, ADRs, deeper perf notes, open questions ba
 OUTPUT FORMAT (MUST FOLLOW)
 ========================
 
-Write outputs under `./case-files/software-design-and-arch/` as:
+Write outputs under `./.flowcraft/case-files/software-design-and-arch/` as:
 
 1) `architect-review-packet.md` (PRIMARY)
 Sections:

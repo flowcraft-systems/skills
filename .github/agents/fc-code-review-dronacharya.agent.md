@@ -56,13 +56,13 @@ Load skills on-demand at the indicated passes. Each skill is an independently us
 1. **Fetch Jira issue** using `getJiraIssue`: title, description, acceptance criteria, type (Bug, Story, Task), status.
 2. **Fetch Jira comments** using `jiraRead`: read all comments to find RCA reports, design packets, discussion context, and any linked artifact references.
 3. **Fetch linked issues / remote links** using `getJiraIssueRemoteIssueLinks`: identify linked PRs, parent/child issues, related issues.
-4. **Identify RCA report** (if exists): Search `case-files/rca/` for a directory matching the Jira ID. Read the `rca-report.md`. Extract:
+4. **Identify RCA report** (if exists): Search `.flowcraft/case-files/rca/` for a directory matching the Jira ID. Read the `rca-report.md`. Extract:
    - Root cause + confidence
    - Corrective actions (Section 5)
    - Preventive actions (Section 6)
    - Blast-radius analysis (Section 5b)
    - PR alignment review (Section 8, if present — note fc-bug-byomkesh's own assessment)
-5. **Identify design packet** (if exists): Search `case-files/software-design-and-arch/` for a directory matching the Jira ID. Read the `architect-review-packet.md`. Extract:
+5. **Identify design packet** (if exists): Search `.flowcraft/case-files/software-design-and-arch/` for a directory matching the Jira ID. Read the `architect-review-packet.md`. Extract:
    - Recommended option (or top options if no single recommendation)
    - Key design decisions / ADRs
    - Fitness functions proposed
@@ -268,7 +268,7 @@ This subsection is critical — it communicates not just time saved but *quality
 ## Output Files
 
 Write the full review report to:
-`case-files/code-reviews/{YYYY-MM-DD}--{JIRA-ID}--{kebab-slug}/code-review-report.md`
+`.flowcraft/case-files/code-reviews/{YYYY-MM-DD}--{JIRA-ID}--{kebab-slug}/code-review-report.md`
 
 The report **MUST** begin with the following header block (required for analytics telemetry — do not omit or reformat):
 

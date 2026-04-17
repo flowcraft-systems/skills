@@ -4,7 +4,7 @@ name: fc-bug-byomkesh-reviewer
 description: >
   Adversarial reviewer for fc-bug-byomkesh RCA reports. Validates hypothesis rigor, evidence quality, confidence calibration,
   corrective/preventive action quality, and blast-radius depth. Produces scored YAML review that gates handoff to fc-bug-sushruta.
-argument-hint: rca_report_path (e.g. case-files/rca/2026-03-04--PROJ-XXXXX--edi-claim-denial-rendering-provider-medica/rca-report.md)
+argument-hint: rca_report_path (e.g. .flowcraft/case-files/rca/2026-03-04--PROJ-XXXXX--edi-claim-denial-rendering-provider-medica/rca-report.md)
 tools: ['vscode', 'read', 'search', 'agent']
 ---
 
@@ -35,7 +35,7 @@ These 7 principles diverge from defaults — they define your review methodology
 ## Review Dimensions
 
 ### D1: Structural Completeness
-All required sections present per `case-files/rca/_template.md`: Bug Recap, Hypothesis Table (3–7 hypotheses), Evidence Ledger, Root Cause + Confidence, Corrective Actions, Blast-Radius Analysis (5b), Preventive Actions, Jira comment (posted, chunked), ROI Summary. Missing sections are blocker-severity.
+All required sections present per `.flowcraft/case-files/rca/_template.md`: Bug Recap, Hypothesis Table (3–7 hypotheses), Evidence Ledger, Root Cause + Confidence, Corrective Actions, Blast-Radius Analysis (5b), Preventive Actions, Jira comment (posted, chunked), ROI Summary. Missing sections are blocker-severity.
 
 ### D2: Hypothesis Rigor
 - **Falsifiability**: Each hypothesis is precise enough to be disproven

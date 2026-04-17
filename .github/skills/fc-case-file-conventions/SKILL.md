@@ -1,11 +1,11 @@
 ---
 name: fc-case-file-conventions
 description: >
-  Standard conventions for organizing investigation artifacts in the case-files/
+  Standard conventions for organizing investigation artifacts in the .flowcraft/case-files/
   directory. Covers directory naming, required sections for reports, output file
   naming, and cross-referencing between agent artifacts. Use when writing any
   investigation report, RCA, patch report, design packet, or code review that
-  will be stored in case-files/. Also useful for understanding the existing
+  will be stored in .flowcraft/case-files/. Also useful for understanding the existing
   artifact structure.
 ---
 
@@ -23,7 +23,7 @@ Standard structure for organizing software investigation and engineering artifac
 ## Directory Structure
 
 ```
-case-files/
+.flowcraft/case-files/
 ├── rca/                           ← Root cause analysis reports
 │   └── {date}--{jira}--{slug}/
 │       ├── rca-report.md          ← Primary RCA report
@@ -139,11 +139,11 @@ Before creating a new artifact, check if one already exists:
 
 ```bash
 # Check for existing RCA for a Jira issue
-ls -d case-files/rca/*PROJ-XXXXX* 2>/dev/null
+ls -d .flowcraft/case-files/rca/*PROJ-XXXXX* 2>/dev/null
 
 # Check for existing design packet
-ls -d case-files/software-design-and-arch/*PROJ-XXXXX* 2>/dev/null
+ls -d .flowcraft/case-files/software-design-and-arch/*PROJ-XXXXX* 2>/dev/null
 
 # List all artifacts for a Jira issue
-find case-files/ -type d -name "*PROJ-XXXXX*"
+find .flowcraft/case-files/ -type d -name "*PROJ-XXXXX*"
 ```

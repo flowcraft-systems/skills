@@ -1,7 +1,7 @@
 ---
 name: fc-bug-sushruta
 description: Senior sustenance engineering agent. Takes an RCA report from fc-bug-byomkesh and surgically patches the bug using TDD (red-green-refactor), safe legacy-code techniques, feature-flag protection, and blast-radius analysis. Produces a detailed Patch Report for code reviewer / QC / team lead.
-argument-hint: rca_report_path (e.g. case-files/rca/2026-03-04--PROJ-XXXXX--edi-claim-denial-rendering-provider-medica/rca-report.md) and optional jira_id.
+argument-hint: rca_report_path (e.g. .flowcraft/case-files/rca/2026-03-04--PROJ-XXXXX--edi-claim-denial-rendering-provider-medica/rca-report.md) and optional jira_id.
 tools: ['vscode', 'execute', 'read', 'edit', 'search', 'web', 'todo', 'agent']
 ---
 
@@ -41,7 +41,7 @@ Load skills on-demand at the indicated passes. Each skill is an independently us
 
 ## Inputs
 
-- `rca_report_path` — Path to the RCA report produced by fc-bug-byomkesh (e.g. `case-files/rca/{date}--{id}--{slug}/rca-report.md`)
+- `rca_report_path` — Path to the RCA report produced by fc-bug-byomkesh (e.g. `.flowcraft/case-files/rca/{date}--{id}--{slug}/rca-report.md`)
 - `jira_id` (optional, extracted from RCA if not provided)
 - `repo_roots[]` (optional, inferred from RCA's suspected components)
 
@@ -210,7 +210,7 @@ Apply the **minimum change** required to make all RED tests turn GREEN.
 5. **No refactoring yet.** This pass is ONLY about making RED tests GREEN. Resist the urge to clean up.
 6. **Add a breadcrumb comment.** At each patch site, add a brief comment:
    ```
-   // {JIRA-ID}: Exclude {description} — see case-files/patches/{date}--{id}--{slug}/patch-report.md
+   // {JIRA-ID}: Exclude {description} — see .flowcraft/case-files/patches/{date}--{id}--{slug}/patch-report.md
    ```
 
 #### After patching
@@ -324,7 +324,7 @@ Output: Post-Patch Blast Radius table + Functional Impact Map + verdict.
 
 Produce the comprehensive Patch Report — the primary deliverable.
 
-Write to: `case-files/patches/{YYYY-MM-DD}--{JIRA-ID}--{kebab-slug}/patch-report.md`
+Write to: `.flowcraft/case-files/patches/{YYYY-MM-DD}--{JIRA-ID}--{kebab-slug}/patch-report.md`
 
 The report MUST contain the following sections:
 
@@ -466,7 +466,7 @@ After writing and reviewing the report:
    - **Fix branch:** `fix/{jira-id}--{slug}` in `{submodule}`
    - **Feature flag (if applicable):** flag name, OFF = old behavior / ON = fix applied
    - **Blast-radius verdict:** ✅ SAFE / ⚠️ CAUTION / 🛑 HOLD
-   - **Git record:** relative path `case-files/patches/{YYYY-MM-DD}--{JIRA-ID}--{slug}/patch-report.md`
+   - **Git record:** relative path `.flowcraft/case-files/patches/{YYYY-MM-DD}--{JIRA-ID}--{slug}/patch-report.md`
 
 ---
 
@@ -528,10 +528,10 @@ If the buggy area is deeply entangled:
 
 Write the Patch Report to:
 ```
-case-files/patches/{YYYY-MM-DD}--{JIRA-ID}--{kebab-slug}/patch-report.md
+.flowcraft/case-files/patches/{YYYY-MM-DD}--{JIRA-ID}--{kebab-slug}/patch-report.md
 ```
 
-Following the template in `case-files/patches/_template.md`.
+Following the template in `.flowcraft/case-files/patches/_template.md`.
 
 Commit the report to the root repo: `{JIRA-ID} Patch Report`
 Commit the code changes in the submodule on the fix branch: `{JIRA-ID} Fix: {one-line summary}`
