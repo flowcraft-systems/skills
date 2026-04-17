@@ -1,6 +1,6 @@
 {
   "name": "@flowcraft.systems/skills",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "FlowCraft AI agent skills and agents — install into any GitHub Copilot workspace",
   "keywords": [
     "github-copilot",
