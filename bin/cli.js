@@ -430,6 +430,19 @@ async function cmdInstall(args) {
     process.stdout.write(
       `\n${c.dim}Tip: commit ${dirs.join(' and ')} so your whole team benefits.${c.reset}\n`
     );
+
+    // ── Activation CTA ─────────────────────────────────────────────────
+    process.stdout.write(`\n${c.bold}${c.cyan}Your first 10 minutes${c.reset}\n`);
+    process.stdout.write(`  Pick a real production bug from your backlog and try:\n`);
+    process.stdout.write(`    ${c.green}@fc-bug-byomkesh PROJ-1234${c.reset}\n`);
+    process.stdout.write(`  ${c.dim}Full walkthrough: docs/FIRST-BUG-TO-TRY.md${c.reset}\n`);
+
+    process.stdout.write(`\n${c.bold}${c.cyan}Working in a brownfield codebase?${c.reset}\n`);
+    process.stdout.write(`  ${c.dim}Start here: docs/BROWNFIELD-PLAYBOOK.md${c.reset}\n`);
+
+    process.stdout.write(`\n${c.bold}${c.cyan}Need team-wide visibility?${c.reset}\n`);
+    process.stdout.write(`  Track ROI, audit artifact quality, share evidence with leadership:\n`);
+    process.stdout.write(`    ${c.cyan}https://flowcraft.systems${c.reset}\n`);
   }
 
   process.stdout.write('\n');

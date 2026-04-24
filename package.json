@@ -1,15 +1,22 @@
 {
   "name": "@flowcraft.systems/skills",
   "version": "1.0.3",
-  "description": "FlowCraft AI agent skills and agents — install into any GitHub Copilot workspace",
+  "description": "FlowCraft AI agents for brownfield and legacy codebases — structured bug investigation, safe refactoring, and AI-first workflow discipline. Works with GitHub Copilot & Claude Code.",
   "keywords": [
     "github-copilot",
     "copilot-agents",
     "ai-agents",
     "skills",
-    "flowcraft"
+    "flowcraft",
+    "legacy-code",
+    "brownfield",
+    "technical-debt",
+    "refactoring",
+    "root-cause-analysis",
+    "enterprise",
+    "engineering-productivity"
   ],
-  "homepage": "https://github.com/flowcraft-systems/skills#readme",
+  "homepage": "https://flowcraft.systems",
   "license": "MIT",
   "author": "FlowCraft Systems",
   "bin": {
@@ -18,7 +25,8 @@
   "files": [
     "bin/",
     ".github/agents/",
-    ".github/skills/"
+    ".github/skills/",
+    "docs/"
   ],
   "engines": {
     "node": ">=18"
