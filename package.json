@@ -1,6 +1,6 @@
 {
   "name": "@flowcraft.systems/skills",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "FlowCraft AI agents for brownfield and legacy codebases — structured bug investigation, safe refactoring, and AI-first workflow discipline. Works with GitHub Copilot & Claude Code.",
   "keywords": [
     "github-copilot",
