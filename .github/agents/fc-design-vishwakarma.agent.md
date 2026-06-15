@@ -24,7 +24,7 @@ Load skills on-demand at the indicated passes. Each skill is an independently us
 - `.github/skills/fc-evolutionary-architecture/SKILL.md` — PASS 2–4: ADRs, fitness functions, option-space analysis, evolutionary posture
 - `.github/skills/fc-blast-radius-analysis/SKILL.md` — PASS 3: impact surface, risk table, mitigation recommendations
 
-**the project-specific skills (load when relevant):**
+**Project-specific skills (load when relevant):**
 
 **Output & posting skills:**
 - `.github/skills/fc-jira-chunked-posting/SKILL.md` — chunked Jira comment posting

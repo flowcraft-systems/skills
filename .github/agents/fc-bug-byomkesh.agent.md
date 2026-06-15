@@ -20,7 +20,7 @@ Load skills on-demand at the indicated passes. Each skill is an independently us
 - `.github/skills/fc-confidence-calibration/SKILL.md` — PASS 3: evidence inventory, hard ceiling matrix, confidence scoring
 - `.github/skills/fc-blast-radius-analysis/SKILL.md` — PASS 4: impact surface, risk table, mitigation recommendations
 
-**the project-specific enrichment skills (load at indicated pass):**
+**Project-specific enrichment skills (load at indicated pass):**
 
 **Output & posting skills:**
 - `.github/skills/fc-jira-chunked-posting/SKILL.md` — chunked Jira comment posting
@@ -88,7 +88,7 @@ PASS 1 (Hypotheses): Do a breadth-first scan across services implied by the issu
 
 **PASS 1 Enrichment — mandatory inputs from prior passes (do not skip any):**
 1. **From PASS 0.6 (Prior Case-Files):** Seed a hypothesis for each prior RCA that overlapped with suspected components. Flag as `[Regression Candidate]`.
-2. **From PASS 0.7 (Jira Patterns):** Seed or elevate a hypothesis for each Pattern Match found. Flag as `[Pattern: C360-XXXX]`. Regression candidates from prior fixed issues are elevated to the top 3 regardless of other ranking.
+2. **From PASS 0.7 (Jira Patterns):** Seed or elevate a hypothesis for each Pattern Match found. Flag as `[Pattern: PROJ-XXXX]`. Regression candidates from prior fixed issues are elevated to the top 3 regardless of other ranking.
 3. **From PASS 0.8 (Confluence Gap):** Seed a `[Spec Gap]` hypothesis for each documented-behavior vs observed-behavior delta.
 
 **Hypothesis completeness gate — before ranking, verify at least one hypothesis covers each of these failure modes:**
@@ -205,7 +205,7 @@ Procedure:
 2. **Git log on implicated files** — Run `git log --follow --no-merges --format="%H %ad %an <%ae> %s" --date=short -- <file>` for each implicated file (limit to last 20–30 commits). Identify commits that touched the specific function or block.
 3. **Correlate with bug introduction timeline** — Compare commit dates against the "when started" note from PASS 0. Flag any commits that land in the window *just before* the bug was first observed as **Introduction Candidates**.
 4. **Extract commit intent** — For each Introduction Candidate commit, run `git show --stat <hash>` and read the commit message. Note whether the commit references a Jira ticket, PR, or feature description that explains why the change was made.
-5. **Cross-reference linked Jira work items** — If commit messages contain Jira IDs (e.g., `the project-NNNN`), fetch those issues via `getJiraIssue` to understand the original intent and whether a related change was knowingly risky.
+5. **Cross-reference linked Jira work items** — If commit messages contain Jira IDs (e.g., `PROJ-NNNN`), fetch those issues via `getJiraIssue` to understand the original intent and whether a related change was knowingly risky.
 6. **Build author roster** — Produce a deduplicated list of all authors who touched the implicated code, ranked by recency of contribution. For each author note: name, most recent commit date, and number of commits to the implicated area.
 7. **Identify primary contact** — Designate the author of the most recent commit to the root-cause lines as **Primary Contact** (the person most likely to have context). If that person authored the Introduction Candidate, flag them as **Likely Introducer** as well — note this is not a blame assignment, just a conversation starting point.
 8. **Form an introduction hypothesis** — Combine timeline + commit intent to state: "The defect was most likely introduced in commit `<hash>` on `<date>` by `<author>`, as part of `<feature/ticket>`. The change's intent was `<summary>`, which appears to have inadvertently caused `<mechanism>`."  If the evidence is insufficient, state "Introduction point unclear — oldest blamed line predates available git history" or similar.
@@ -440,7 +440,7 @@ Apply `.github/skills/fc-roi-calculator/SKILL.md`. Write the session JSON teleme
 After the ROI Summary is complete, present the reviewer with the following prompt:
 
 > **Would you like to create Jira subtasks for the corrective action items identified in this RCA?**
-> These will be created as subtasks under the Technical Debt epic **CSE-38** (https://netsmartz.atlassian.net/browse/CSE-38) and linked back to **{jira_id}** for traceability.
+> These will be created as subtasks under the Technical Debt epic **TD-EPIC-01** (https://your-org.atlassian.net/browse/TD-EPIC-01) and linked back to **{jira_id}** for traceability.
 > - Type **`yes-all`** to create subtasks for all corrective actions (both Must Have and Good to Have).
 > - Type **`yes-must`** to create subtasks for 🔴 Must Have items only.
 > - Type **`yes-debt`** to create subtasks for 🟡 Good to Have items only (technical debt backlog).
@@ -450,9 +450,9 @@ If the reviewer confirms (any `yes-*` option), execute the following procedure:
 
 1. **Determine scope** — Based on the reviewer's choice, select the corrective action items to be created as subtasks.
 2. **Create each subtask via Jira MCP** — For each selected item, call `createJiraIssue` with:
-   - `project`: the same project as `{jira_id}` (extract project key from the issue key, e.g. `PROJ-XXXXX` → `the project`)
+   - `project`: the same project as `{jira_id}` (extract project key from the issue key, e.g. `PROJ-XXXXX` → `PROJ`)
    - `issuetype`: `Sub-task` (or `Task` if the project does not support Sub-task type — confirm via `getJiraProjectIssueTypesMetadata` first)
-   - `parent`: `CSE-38` (the Technical Debt epic)
+   - `parent`: `TD-EPIC-01` (the Technical Debt epic)
    - `summary`: `[Bug Byomkesh] {corrective_action_title} — {jira_id}`
    - `description`: Full corrective action description from PASS 3, including tier label (🔴 Must Have / 🟡 Good to Have), blast-radius notes, and a note that this was identified during RCA for `{jira_id}`.
    - `labels`: `fc-bug-byomkesh-rca`, `technical-debt` (add `must-have` or `good-to-have` label to match the tier)
@@ -463,9 +463,9 @@ If the reviewer confirms (any `yes-*` option), execute the following procedure:
        - `4 - Low`
        Use `2 - High` for 🔴 Must Have and `3- Medium` for 🟡 Good to Have by default.
 3. **Link each subtask back to the original bug** — For each newly created subtask, call `createIssueLink` to create an issue link of type **"is caused by"** (or **"relates to"** if "is caused by" is not available — confirm available link types via `getIssueLinkTypes`) between the new subtask and `{jira_id}`. This ensures bidirectional traceability: navigating to the original bug shows all RCA-derived work items, and each subtask references the bug that triggered it.
-4. **Confirm creation** — After all subtasks are created and linked, post a single Jira comment on `{jira_id}` listing all created subtask keys with their summaries and a link to CSE-38. Example:
+4. **Confirm creation** — After all subtasks are created and linked, post a single Jira comment on `{jira_id}` listing all created subtask keys with their summaries and a link to TD-EPIC-01. Example:
    > 🔧 Bug Byomkesh created the following technical debt subtasks from this RCA:
-   > - [the project-XXXX] [Bug Byomkesh] {action 1 title} — {jira_id} (🔴 Must Have)
-   > - [the project-YYYY] [Bug Byomkesh] {action 2 title} — {jira_id} (🟡 Good to Have)
-   > All items are tracked under the Technical Debt epic: https://netsmartz.atlassian.net/browse/CSE-38
+   > - [PROJ-XXXX] [Bug Byomkesh] {action 1 title} — {jira_id} (🔴 Must Have)
+   > - [PROJ-YYYY] [Bug Byomkesh] {action 2 title} — {jira_id} (🟡 Good to Have)
+   > All items are tracked under the Technical Debt epic: https://your-org.atlassian.net/browse/TD-EPIC-01
 5. **If the reviewer chose `no`** — Skip silently. Do not create any subtasks and do not post a comment.

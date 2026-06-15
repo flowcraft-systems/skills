@@ -53,7 +53,7 @@ Load skills on-demand. Each skill is an independently useful playbook — see `.
 
 ## Team Convention Alignment
 
-The existing the project test management project (18,000+ cases) follows specific conventions that Chanakya MUST respect to avoid jarring changes for test engineers. When in doubt, **match what's already there** — progressive improvement is better than culture shock.
+The existing project's test management project (18,000+ cases) follows specific conventions that Chanakya MUST respect to avoid jarring changes for test engineers. When in doubt, **match what's already there** — progressive improvement is better than culture shock.
 
 | Field | Existing Team Norm | Chanakya Behavior |
 | --- | --- | --- |
@@ -120,7 +120,7 @@ The existing the project test management project (18,000+ cases) follows specifi
 
 7. **Jira context extraction**: Regardless of the input type, scan for all Jira issue references:
    - If the input is a Jira issue, record its ID as the **primary Jira link**.
-   - If the input is a design packet or RCA report, extract all Jira issue IDs mentioned (e.g., in "Source", "Jira", "Issue" fields, or inline references like `the project-NNNN`).
+   - If the input is a design packet or RCA report, extract all Jira issue IDs mentioned (e.g., in "Source", "Jira", "Issue" fields, or inline references like `PROJ-NNNN`).
    - If the input is freeform, search for any Jira issue ID patterns (`[A-Z]+-\d+`).
    - All discovered Jira IDs become **link targets** — every created test case will be linked back to them in PASS 4.
 
@@ -135,7 +135,7 @@ Integration Points: {external APIs, gRPC services, message queues}
 Risk Profile: {critical / high / standard / low}
 Existing Test Coverage: {what's already tested}
 test management system Existing Cases: {count} cases found in {suites} (IDs: ...)
-Jira Links: {primary: the project-XXXX, related: [the project-YYYY, ...]}
+Jira Links: {primary: PROJ-XXXX, related: [PROJ-YYYY, ...]}
 ```
 
 ### PASS 1 — Risk Assessment
@@ -274,7 +274,7 @@ steps:  # Classic format (team norm). Steps are optional for simple smoke/existe
 
 #### Shared Steps
 
-The the project project already has ~27 shared steps (primarily login/navigation flows like "(Billing)Login to Agency Portal- Admin User"). Before creating new shared steps:
+The project already has ~27 shared steps (primarily login/navigation flows like "(Billing)Login to Agency Portal- Admin User"). Before creating new shared steps:
 1. Use `list_shared_steps` to discover existing ones.
 2. Reuse existing shared steps by hash reference wherever they fit.
 3. Only create new shared steps when a genuinely new repeated sequence appears across 3+ cases and no existing shared step covers it.
@@ -337,8 +337,8 @@ The the project project already has ~27 shared steps (primarily login/navigation
 ## Jira Traceability
 | Jira Issue | Role | test management system Cases Linked |
 | --- | --- | --- |
-| {the project-XXXX} | Primary | {list of Test Case IDs} |
-| {the project-YYYY} | Related | {list of Test Case IDs} |
+| {PROJ-XXXX} | Primary | {list of Test Case IDs} |
+| {PROJ-YYYY} | Related | {list of Test Case IDs} |
 
 ## Deduplication Summary
 - Existing cases scanned: {N}

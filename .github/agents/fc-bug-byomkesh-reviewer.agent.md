@@ -74,7 +74,7 @@ All required sections present per `.flowcraft/case-files/rca/_template.md`: Bug 
 ### D6: Blast-Radius Depth
 - Dependency scan actually searched for callers/consumers (not hand-waved)
 - Risks are specific and plausible (not generic "might break something")
-- the project-specific risk categories checked: other payers on same code path, SP parameter changes breaking callers, feature flag affecting other tenants, EDI/claims compliance impacts, cross-service BFF→backend→DB chain
+- Project-specific risk categories checked: other payers on same code path, SP parameter changes breaking callers, feature flag affecting other tenants, EDI/claims compliance impacts, cross-service BFF→backend→DB chain
 - Mitigations are actionable (not "test thoroughly")
 - Net assessment matches risk table (Medium/High risks + "safe to ship" needs justification)
 

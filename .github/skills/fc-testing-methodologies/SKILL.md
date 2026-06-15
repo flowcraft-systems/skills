@@ -1,7 +1,7 @@
 ---
 name: fc-testing-methodologies
 description: >
-  Modern software testing frameworks for your project: Risk-Based Testing with risk matrices and test management field mapping, Context-Driven Testing, Exploratory Testing with session-based approach, Model-Based Testing, and Behavior-Driven Development. Use when designing or reviewing test cases for any the project feature.
+  Modern software testing frameworks for your project: Risk-Based Testing with risk matrices and test management field mapping, Context-Driven Testing, Exploratory Testing with session-based approach, Model-Based Testing, and Behavior-Driven Development. Use when designing or reviewing test cases for any project feature.
 ---
 
 # Testing Methodologies Skill
@@ -42,7 +42,7 @@ Tests with the highest risk exposure are designed, executed, and maintained firs
 - 🟡 Risk 6–9  → Severity: **Normal**, Priority: **Not set**, Type: **Regression**
 - 🟢 Risk 1–5  → Severity: **Normal**, Priority: **Not set**, Type: **Other** or **Regression**
 
-> ⚠️ **Team convention note**: The the project project rarely uses Blocker, Major, Minor, or Trivial severity. Stick to Critical and Normal. Priority "Not set" is the team default — only set High or Medium for 🔴🟠 risk cases.
+> ⚠️ **Team convention note**: The project's test management project rarely uses Blocker, Major, Minor, or Trivial severity. Stick to Critical and Normal. Priority "Not set" is the team default — only set High or Medium for 🔴🟠 risk cases.
 
 ### Risk-Based Test Design Heuristics
 1. **Boundary values** at integration points (API contracts, DB constraints)
@@ -78,7 +78,7 @@ When generating test cases, always consider and document:
 - User personas → **Tags** (simple words: `Caregiver`, `Admin`, `Billing`)
 - Important environmental context can be noted in pre-conditions
 
-> ⚠️ **Team convention note**: Tags in the the project project are simple feature-area words ("Client", "Payer", "Billing"). Do NOT use compound tags like `persona:caregiver`, `env:mobile-field`, or `regulation:hipaa`.
+> ⚠️ **Team convention note**: Tags in the project's test management project are simple feature-area words ("Client", "Payer", "Billing"). Do NOT use compound tags like `persona:caregiver`, `env:mobile-field`, or `regulation:hipaa`.
 
 ---
 
@@ -108,7 +108,7 @@ To discover [information about quality risks]
 
 ### Gherkin Syntax for test management system Steps
 
-> ⚠️ **Team convention note**: The the project project exclusively uses **classic step format** (action / expected_result / data). While test management system supports Gherkin natively, the team does not use it. When generating test cases, always use classic step format. The Gherkin syntax below is for reference only — use it to derive classic steps from BDD scenarios.
+> ⚠️ **Team convention note**: The project's test management project exclusively uses **classic step format** (action / expected_result / data). While test management system supports Gherkin natively, the team does not use it. When generating test cases, always use classic step format. The Gherkin syntax below is for reference only — use it to derive classic steps from BDD scenarios.
 
 test management system supports Gherkin steps natively. Use this format:
 
@@ -196,7 +196,7 @@ For every input:
 | Performance | Load, stress, response time | Rare |
 | Acceptance | User story acceptance criteria | Rare |
 
-> ⚠️ **Team convention note**: The the project project overwhelmingly uses **Regression** and **Other**. Default to Regression for standard cases. Only use specialized types when the test case genuinely targets that concern.
+> ⚠️ **Team convention note**: The project's test management project overwhelmingly uses **Regression** and **Other**. Default to Regression for standard cases. Only use specialized types when the test case genuinely targets that concern.
 
 ---
 

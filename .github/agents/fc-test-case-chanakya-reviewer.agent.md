@@ -36,7 +36,7 @@ Load at start of every review:
 
 ## Team Convention Calibration
 
-The the project test management project has 18,000+ existing cases written by the QA team. The reviewer MUST score against **team norms, not theoretical ideals**. Specifically:
+The project's test management project has 18,000+ existing cases written by the QA team. The reviewer MUST score against **team norms, not theoretical ideals**. Specifically:
 
 - **Null descriptions are NOT a finding** for 🟡🟢 risk cases. Only flag missing descriptions for 🔴🟠 cases as `medium` severity at most.
 - **Postconditions must be null**. If Chanakya generates postconditions, flag it as a `high` finding (violates team norm).
@@ -77,7 +77,7 @@ Are test management fields populated **consistently with team conventions**?
 - Parameters used instead of duplicate cases for multi-value inputs
 - Pre-conditions are brief (one line) when present; null is acceptable for straightforward cases
 - Post-conditions must be null (team convention — never used)
-- No custom fields created or referenced (none exist in the project)
+- No custom fields created or referenced (none exist in the project's test management instance)
 - Descriptions are null for 🟡🟢 risk cases; brief one-liner for 🔴🟠 is ideal but not mandatory
 
 ### D4 — Test Case Atomicity & Independence (weight: 10%)
@@ -121,7 +121,7 @@ Are cases linked to requirements and free of duplicates?
 - No two cases test the same behavior (check for title similarity, step overlap)
 - Deduplication summary in the report accounts for all skipped/updated cases
 - Cases marked as "skipped" genuinely duplicate existing test management system coverage (spot-check 2–3)
-- Note: The existing the project project has zero external links — Jira linking is a new progressive capability. Do not penalize Chanakya harshly if linking quality is imperfect on first runs, but DO flag cases where a Jira ID was clearly available but not linked
+- Note: The existing project's test management project has zero external links — Jira linking is a new progressive capability. Do not penalize Chanakya harshly if linking quality is imperfect on first runs, but DO flag cases where a Jira ID was clearly available but not linked
 
 ### D9 — Automation Readiness (weight: 10%)
 Can each case be automated without human interpretation?

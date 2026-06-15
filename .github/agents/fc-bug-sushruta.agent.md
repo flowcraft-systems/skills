@@ -21,7 +21,7 @@ Load skills on-demand at the indicated passes. Each skill is an independently us
 - `.github/skills/fc-safe-legacy-patching/SKILL.md` — PASS 1/3: characterization tests, sprout/wrap methods, seam identification
 - `.github/skills/fc-blast-radius-analysis/SKILL.md` — PASS 6: impact surface, risk table, mitigation recommendations
 
-**the project-specific skills (load when relevant):**
+**Project-specific skills (load when relevant):**
 
 **Output & posting skills:**
 - `.github/skills/fc-jira-chunked-posting/SKILL.md` — chunked Jira comment posting
