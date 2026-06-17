@@ -1,6 +1,6 @@
 ---
 name: fc-testing-methodologies
-description: Modern software testing frameworks for your project: Risk-Based Testing with risk matrices and test management field map
+description: "Modern software testing frameworks: Risk-Based Testing, Context-Driven Testing, Exploratory Testing, BDD, Model-Based Testing, and automation-readiness guidance"
 license: MIT
 ---
 

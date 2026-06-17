@@ -1,6 +1,6 @@
 ---
 name: fc-tdd-red-green-refactor
-description: Test-Driven Development protocol: Red (write failing test) → Green (minimal code to pass) → Refactor (clean up under tes
+description: "Test-Driven Development protocol: Red (write failing test) → Green (minimal code to pass) → Refactor (clean up under test protection)"
 license: MIT
 ---
 
