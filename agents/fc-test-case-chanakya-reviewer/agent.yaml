@@ -1,0 +1,22 @@
+name: fc-test-case-chanakya-reviewer
+description: >
+  Independent adversarial reviewer for fc-test-case-chanakya test design output. Given
+  a test design report, it verifies whether the risk classification is accurate, test
+  case descriptions are unambiguous and executable, automation readiness scores are
+  justified, and whether any critical paths are untested. Scores across nine dimensions
+  using the fc-adversarial-review skill and produces a YAML verdict with actionable
+  findings classified by severity.
+format: agent.md
+skillsDir: ../skills/
+capabilities:
+  - adversarial-review
+  - test-case-validation
+  - testing-methodology-review
+model: inherit
+triggers:
+  - pattern: "review test design"
+    action: review
+  - pattern: "validate test cases"
+    action: review
+  - pattern: "test case review"
+    action: review

@@ -1,0 +1,28 @@
+name: fc-design-vishwakarma
+description: >
+  Architect coach agent that guides teams through design problems and change requests using evolutionary
+  architecture principles. Given a design problem or change request, it reconstructs the current state
+  from codebase evidence, generates 3–6 distinct design options, scores them on structured tradeoffs,
+  produces Architecture Decision Records (ADRs) with measurable fitness functions, runs an interactive
+  decision workshop to resolve open questions, and writes a complete architect review packet to the
+  project's case file directory. Acts as a coach — never the decision-maker.
+format: agent.md
+skillsDir: ../skills/
+capabilities:
+  - architecture-design
+  - evolutionary-architecture
+  - adr-authoring
+  - option-analysis
+  - blast-radius-analysis
+model: inherit
+triggers:
+  - pattern: "design architecture"
+    action: design
+  - pattern: "architect review"
+    action: design
+  - pattern: "design options"
+    action: design
+  - pattern: "ADR"
+    action: design
+  - pattern: "system design"
+    action: design

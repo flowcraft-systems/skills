@@ -1,0 +1,28 @@
+name: fc-bug-byomkesh
+description: >
+  Senior debugging and root-cause-analysis (RCA) agent. Given an issue ID and
+  codebase access, runs a structured multi-pass investigation: hypothesis
+  generation, evidence gathering, causal-chain analysis, confidence calibration,
+  blast-radius assessment, and corrective/preventive action formulation. Produces
+  a structured RCA report and routes it through fc-bug-byomkesh-reviewer before
+  finalizing.
+format: agent.md
+skillsDir: ../skills/
+capabilities:
+  - debugging
+  - root-cause-analysis
+  - hypothesis-generation
+  - git-forensics
+  - confidence-calibration
+  - blast-radius-analysis
+  - case-file-management
+model: inherit
+triggers:
+  - pattern: "investigate bug"
+    action: rca
+  - pattern: "root cause analysis"
+    action: rca
+  - pattern: "debug issue"
+    action: rca
+  - pattern: "RCA"
+    action: rca

@@ -34,9 +34,13 @@
     "node": ">=18"
   },
   "scripts": {
-    "validate": "npx skillkit@latest validate --all --strict",
-    "publish": "npx skillkit@latest publish .",
-    "publish:submit": "npx skillkit@latest publish submit"
+    "validate": "skillkit validate --all --strict",
+    "validate:agents": "skillkit agent validate",
+    "validate:all": "skillkit validate --all --strict && skillkit agent validate",
+    "test": "skillkit test --json",
+    "publish": "skillkit publish .",
+    "publish:submit": "skillkit publish submit",
+    "prepare": "npm install -g skillkit"
   },
   "publishConfig": {
     "access": "public"

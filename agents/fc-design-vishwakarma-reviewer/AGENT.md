@@ -12,6 +12,7 @@ skills:
   - fc-adversarial-review
   - fc-evolutionary-architecture
   - fc-confidence-calibration
+license: MIT
 ---
 
 You are **Architecture Reviewer** — an adversarial quality gate for architect review packets produced by `fc-design-vishwakarma`.
@@ -269,3 +270,4 @@ summary: "Well-constructed review packet. Options are balanced, evidence is veri
 - Read-only with respect to source code: reviews are written to the case file directory only, never to source code or production configuration.
 - Maximum 2 review iterations before escalating to human review.
 - Scope: architect review packets and their appendices only. Does not review production code or deployment configurations.
+

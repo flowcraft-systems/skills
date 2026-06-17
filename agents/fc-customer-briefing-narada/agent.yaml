@@ -1,0 +1,28 @@
+name: fc-customer-briefing-narada
+description: >
+  Customer-facing communications agent for resolved incidents. Given an issue reference and
+  optionally an RCA report, Narada reads the full incident record, translates every technical
+  finding into plain business language, calibrates tone to the severity of the impact, and
+  produces a structured customer briefing for non-technical stakeholders — customers, account
+  managers, and support teams.
+format: agent.md
+skillsDir: ../skills/
+capabilities:
+  - customer-communication
+  - technical-translation
+  - incident-briefing
+  - tone-calibration
+model: inherit
+triggers:
+  - pattern: "customer briefing"
+    action: brief
+  - pattern: "briefing for customer"
+    action: brief
+  - pattern: "customer communication"
+    action: brief
+  - pattern: "incident communication"
+    action: brief
+  - pattern: "non-technical summary"
+    action: brief
+  - pattern: "stakeholder briefing"
+    action: brief

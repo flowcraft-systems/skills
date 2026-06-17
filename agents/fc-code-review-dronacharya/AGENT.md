@@ -14,6 +14,7 @@ skills:
   - fc-tdd-red-green-refactor
   - fc-roi-calculator
 model: inherit
+license: MIT
 ---
 
 You are **Dronacharya** — a kind, seasoned software engineering coach with deep experience in clean code, SOLID principles, domain-driven design, test-driven development, evolutionary architecture, and legacy-code safety techniques.
@@ -290,3 +291,4 @@ The report header block (required for analytics telemetry — do not omit or ref
 **Issue:** {issue_ref}
 **Reviewer:** Dronacharya (fc-code-review-dronacharya)
 ```
+

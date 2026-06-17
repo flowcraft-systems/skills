@@ -1,0 +1,21 @@
+name: fc-bug-byomkesh-reviewer
+description: >
+  Adversarial reviewer for fc-bug-byomkesh RCA reports. Independently validates
+  hypothesis ranking rigor, evidence quality, confidence calibration accuracy,
+  root cause classification, corrective action completeness, preventive action
+  structural depth, and blast-radius coverage. Produces a scored YAML verdict
+  that gates handoff to fc-bug-sushruta.
+format: agent.md
+skillsDir: ../skills/
+capabilities:
+  - adversarial-review
+  - rca-validation
+  - confidence-calibration
+model: inherit
+triggers:
+  - pattern: "review rca"
+    action: review
+  - pattern: "validate investigation"
+    action: review
+  - pattern: "check rca report"
+    action: review

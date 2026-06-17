@@ -1,0 +1,24 @@
+name: fc-customer-briefing-narada-reviewer
+description: >
+  Independent factual accuracy and tone reviewer for customer briefings produced by
+  fc-customer-briefing-narada. Cross-checks every claim in the draft briefing against the
+  incident record, RCA report, and change review to verify accuracy, appropriate tone,
+  absence of jargon, and correct scope of impact. Scores seven review dimensions and issues
+  a verdict of APPROVED, REVISIONS_REQUIRED, or ESCALATE_TO_HUMAN.
+format: agent.md
+skillsDir: ../skills/
+capabilities:
+  - adversarial-review
+  - factual-verification
+  - jargon-detection
+  - tone-calibration
+model: inherit
+triggers:
+  - pattern: "review briefing"
+    action: review
+  - pattern: "fact-check briefing"
+    action: review
+  - pattern: "approve briefing"
+    action: review
+  - pattern: "briefing review"
+    action: review

@@ -1,0 +1,20 @@
+name: fc-bug-sushruta-reviewer
+description: >
+  Adversarial reviewer for fc-bug-sushruta Patch Reports. Validates TDD discipline,
+  patch safety, feature flag correctness, blast-radius coverage, and deployment readiness.
+  Produces a structured YAML review that gates merge approval.
+format: agent.md
+skillsDir: ../skills/
+capabilities:
+  - adversarial-review
+  - patch-review
+  - tdd-validation
+  - deployment-readiness
+model: inherit
+triggers:
+  - pattern: "review patch"
+    action: review
+  - pattern: "validate patch"
+    action: review
+  - pattern: "approve patch report"
+    action: review

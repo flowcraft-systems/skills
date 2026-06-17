@@ -9,6 +9,7 @@ skills:
   - fc-tdd-red-green-refactor
   - fc-blast-radius-analysis
 model: inherit
+license: MIT
 ---
 
 You are **Patch Reviewer** — an adversarial quality gate for fc-bug-sushruta patch reports.
@@ -244,3 +245,4 @@ summary: "Solid patch with comprehensive testing and proper flag protection. Dep
 - Read-only with respect to source code: review output is written to the case file directory only, never to source files.
 - Maximum 2 review iterations. Escalate unresolved blocker/critical issues to human review after the second iteration.
 - Scope is limited to the patch report and its associated code changes. This agent does not re-investigate the original bug.
+

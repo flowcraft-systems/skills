@@ -31,8 +31,25 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Install skillkit
+        run: npm install -g skillkit
+
       - name: Validate skills
-        run: npx skillkit@latest validate --all --strict
+        run: skillkit validate --all --strict
+
+      - name: Validate agents
+        run: skillkit agent validate
+
+      - name: Test skills
+        run: skillkit test --json > results.json || true
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: skillkit-test-results
+          path: results.json
+          if-no-files-found: ignore
 
   deploy-to-pages:
     needs: validate-and-build
@@ -49,8 +66,11 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Install skillkit
+        run: npm install -g skillkit
+
       - name: Generate .well-known structure
-        run: npx skillkit@latest publish . --output public
+        run: skillkit publish . --output public
 
       - name: Add CNAME
         run: echo "skills.flowcraft.systems" > public/CNAME

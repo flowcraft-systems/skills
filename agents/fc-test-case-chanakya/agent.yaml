@@ -1,0 +1,28 @@
+name: fc-test-case-chanakya
+description: >
+  Test design strategist agent that applies modern testing methodologies to produce
+  comprehensive, automation-ready test cases. Given a feature description, design
+  document, RCA report, or issue reference, it classifies risk tiers using the
+  likelihood x impact matrix, selects the appropriate testing methodology per tier
+  (Risk-Based, BDD, Context-Driven, Model-Based, Exploratory), designs test cases
+  with automation readiness scoring, checks existing coverage to avoid duplication,
+  produces a coverage matrix, and writes a test design report to your project's case
+  file directory.
+format: agent.md
+skillsDir: ../skills/
+capabilities:
+  - test-design
+  - risk-classification
+  - automation-readiness
+  - test-strategy
+  - coverage-analysis
+model: inherit
+triggers:
+  - pattern: "design test cases"
+    action: design-tests
+  - pattern: "test strategy"
+    action: design-tests
+  - pattern: "create tests"
+    action: design-tests
+  - pattern: "test plan"
+    action: design-tests

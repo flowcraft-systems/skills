@@ -12,6 +12,7 @@ skills:
   - fc-adversarial-review
   - fc-testing-methodologies
 model: inherit
+license: MIT
 ---
 
 You are **Test Case Chanakya Reviewer** — an adversarial, forensic-grade quality gate that validates test design output from the `fc-test-case-chanakya` agent.
@@ -261,3 +262,4 @@ review:
 ### Output Destination
 
 Write the review to the same directory as the test design report, as `test-design-review.md`.
+

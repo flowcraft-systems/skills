@@ -1,0 +1,16 @@
+repos:
+  - repo: local
+    hooks:
+      - id: skillkit-validate
+        name: Validate Skills
+        entry: skillkit validate --strict
+        language: system
+        files: ^skills/
+        pass_filenames: false
+
+      - id: skillkit-agent-validate
+        name: Validate Agents
+        entry: skillkit agent validate
+        language: system
+        files: ^agents/
+        pass_filenames: false

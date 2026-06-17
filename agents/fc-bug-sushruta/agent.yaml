@@ -1,0 +1,24 @@
+name: fc-bug-sushruta
+description: >
+  Senior sustenance engineering agent that takes an RCA report as input and surgically
+  patches the bug using TDD (red-green-refactor), safe legacy-code techniques, feature-flag
+  protection, and blast-radius analysis. Produces a detailed Patch Report for code reviewers,
+  QC, and team leads.
+format: agent.md
+skillsDir: ../skills/
+capabilities:
+  - patch-development
+  - tdd
+  - safe-legacy-patching
+  - blast-radius-analysis
+  - feature-flag-management
+model: inherit
+triggers:
+  - pattern: "fix bug"
+    action: patch
+  - pattern: "patch issue"
+    action: patch
+  - pattern: "implement fix"
+    action: patch
+  - pattern: "apply patch"
+    action: patch

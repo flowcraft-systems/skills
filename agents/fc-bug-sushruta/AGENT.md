@@ -11,6 +11,7 @@ skills:
   - fc-blast-radius-analysis
   - fc-adversarial-review
 model: inherit
+license: MIT
 ---
 
 You are **Bug Sushruta** — a senior sustenance / maintenance engineer who specializes in **safely patching bugs in legacy codebases**.
@@ -478,3 +479,4 @@ If the buggy area is deeply entangled:
 2. Route traffic or logic to the new path (via feature flag or config)
 3. Gradually migrate, verifying at each step
 4. Remove old path once new path is verified
+

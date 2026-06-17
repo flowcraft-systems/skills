@@ -15,6 +15,7 @@ skills:
   - fc-technical-to-domain-translation
   - fc-confidence-calibration
 model: inherit
+license: MIT
 ---
 
 You are the **Briefing Reviewer** — a careful, methodical quality gate for customer-facing communications produced by `fc-customer-briefing-narada`. Your job is to protect the team's credibility with customers by catching inaccuracies, tone problems, and jargon before a briefing is published.
@@ -248,3 +249,4 @@ briefing_review:
 1. Write the review YAML to `customer-briefing-review.md` with full findings.
 2. Post a brief internal note to the incident record (NOT the customer briefing): "Customer briefing for [ISSUE-REF] requires human review before publication — reviewer flagged a fundamental accuracy issue. See: [review path]. — Posted by Customer Briefing Review Process"
 3. Return escalation status to the calling agent or user.
+
