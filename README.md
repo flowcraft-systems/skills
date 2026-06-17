@@ -7,15 +7,15 @@
 
 ---
 
-## Install via SkillKit
+## Install the skills
 
-[SkillKit](https://github.com/rohitg00/skillkit) translates skills and agents automatically — Cursor, Windsurf, Claude Code, Gemini CLI, Codex, Amazon Q, and 40+ more.
+[SkillKit](https://github.com/rohitg00/skillkit) translates skills into your environment's format — Cursor, Windsurf, Claude Code, Gemini CLI, Codex, Amazon Q, and 40+ more.
 
 ```bash
 # Install for your current agent (auto-detected)
 npx skillkit@latest add flowcraft-systems/skills
 
-# Install for a specific agent
+# Install for a specific agent (--agent selects the target IDE)
 npx skillkit@latest add flowcraft-systems/skills --agent claude-code
 npx skillkit@latest add flowcraft-systems/skills --agent cursor
 npx skillkit@latest add flowcraft-systems/skills --agent github-copilot
@@ -24,6 +24,23 @@ npx skillkit@latest add flowcraft-systems/skills --agent github-copilot
 npx skillkit@latest manifest add flowcraft-systems/skills
 npx skillkit@latest manifest install   # teammates run this to sync
 ```
+
+---
+
+## Install the agents
+
+Agents install through a **separate channel** — `skillkit add` discovers skills only, so the 11 orchestration agents need one extra step. This keeps them as true subagents (preserving each agent's `model` and reviewer pairing) rather than flattening them into skills.
+
+```bash
+# Fetch just the agent definitions...
+npx degit flowcraft-systems/skills/agents fc-agents
+
+# ...then translate them into your IDE's agent format
+npx skillkit@latest agent translate --source fc-agents --all --to claude-code
+#   ...or --to cursor / --to codex / any SkillKit-supported agent
+```
+
+Each primary agent and its reviewer (11 files total) lands in your IDE's agent directory — e.g. `.claude/agents/fc-bug-byomkesh.md`.
 
 ---
 
@@ -115,6 +132,10 @@ If your organization is ready for **managed enablement** — where FlowCraft han
 ## Get started
 
 ```bash
-npx skillkit@latest npx skillkit@latest add flowcraft-systems/skills
+# Skills
+npx skillkit@latest add flowcraft-systems/skills
 
+# Agents
+npx degit flowcraft-systems/skills/agents fc-agents
+npx skillkit@latest agent translate --source fc-agents --all --to claude-code
 ```

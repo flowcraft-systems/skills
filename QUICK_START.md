@@ -59,6 +59,9 @@ After setup, users can install your skills via:
 |--------|---------|
 | **GitHub Pages** | `skillkit add https://skills.flowcraft.systems` |
 | **SkillKit Marketplace** | `skillkit add flowcraft-systems/skills` (after approval) |
+| **Agents** (separate channel) | `npx degit flowcraft-systems/skills/agents fc-agents && skillkit agent translate --source fc-agents --all --to claude-code` |
+
+> **Note:** `skillkit add` discovers **skills only**. The 11 orchestration agents are not part of the published `.well-known` manifest — they install via `skillkit agent translate` from the `agents/` source dir.
 
 ## File Structure
 
@@ -93,6 +96,8 @@ After workflow runs, `.well-known/` contains:
 ```
 
 This is deployed to GitHub Pages automatically. Users discover and install from there.
+
+> `.well-known/` contains **skills only** — `skillkit publish` does not scan `agents/`. Agents are distributed from the `agents/` source dir via `skillkit agent translate`, not the published manifest. This is expected, not a workflow bug.
 
 ## Troubleshooting
 
