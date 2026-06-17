@@ -1,0 +1,131 @@
+{
+  "version": "1.0",
+  "skills": [
+    {
+      "name": "fc-adversarial-review",
+      "description": "Structured adversarial review methodology with dimension-based scoring and YAML verdicts for any artifact review task",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "fc-blast-radius-analysis",
+      "description": "Analyze the potential impact of a proposed code change before applying it. Scans dependencies (callers, callees, DB, API",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "fc-calculate-roi",
+      "description": "Scan local case files (case-files/) and optional ROI telemetry (telemetry/sessions/) to produce a TUI-style ASCII ROI su",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "fc-case-file-conventions",
+      "description": "Standard conventions for organizing investigation artifacts in a project's case-files directory. Covers directory naming",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "fc-confidence-calibration",
+      "description": "Evidence-based confidence scoring for analytical conclusions. Score confidence (0-100%) using an 8-source evidence inven",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "fc-evolutionary-architecture",
+      "description": "Neal Ford's evolutionary architecture principles for software design decisions. Covers fitness functions, Architecture D",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "fc-flowcraft-case-file",
+      "description": "Write a structured case-file markdown document after every meaningful AI engineering session so teams can track effort,",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "fc-git-forensics",
+      "description": "Git history analysis for software investigations. Analyze blame, authorship, change velocity, regression candidates, and",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "fc-hypothesis-driven-investigation",
+      "description": "Structured hypothesis-driven bug investigation methodology. Generate 3-7 ranked, falsifiable hypotheses from bug symptom",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "fc-chunked-posting",
+      "description": "Protocol for posting large agent reports to issue trackers or documentation systems that enforce per-comment or per-mess",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "fc-roi-calculator",
+      "description": "Calculate and emit time-savings ROI after every meaningful agent session. Write a structured JSON file to the local tele",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "fc-roi-summary",
+      "description": "Append a time-savings ROI summary table and qualitative human-under-duress counterfactual analysis to agent reports. Use",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "fc-safe-legacy-patching",
+      "description": "Michael Feathers' techniques for safely modifying code that lacks tests. Covers characterization tests, Sprout Method, S",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "fc-skill-template",
+      "description": "Template for creating new Copilot agent skills. Use this as a starting point for any workflow, checklist, or methodology",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "fc-tdd-red-green-refactor",
+      "description": "Test-Driven Development protocol: Red (write failing test) → Green (minimal code to pass) → Refactor (clean up under tes",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "fc-technical-to-domain-translation",
+      "description": "Translate technical findings into plain language for non-technical stakeholders. Covers audience analysis, jargon elimin",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "fc-testing-methodologies",
+      "description": "Modern software testing frameworks for your project: Risk-Based Testing with risk matrices and test management field map",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "fc-toyota-5-whys",
+      "description": "Toyota 5 Whys root cause analysis methodology. Given a suspected root cause or failure, drill down through 5 levels of ",
+      "files": [
+        "SKILL.md"
+      ]
+    }
+  ]
+}
