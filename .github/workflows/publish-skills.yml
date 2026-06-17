@@ -103,11 +103,15 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Create deployment artifact
+        run: tar --dereference --hard-dereference -cvf /tmp/artifact.tar -C public . && ls -lah /tmp/artifact.tar
+
       - name: Upload pages artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
-          path: public
-          include-hidden-files: true
+          name: github-pages
+          path: /tmp/artifact.tar
+          retention-days: 1
 
       - name: Deploy to GitHub Pages
         id: deployment
