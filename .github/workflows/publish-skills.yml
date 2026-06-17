@@ -50,7 +50,7 @@ jobs:
           node-version: '24'
 
       - name: Generate .well-known structure
-        run: npx skillkit@latest publish . --output public/.well-known
+        run: npx skillkit@latest publish . --output public
 
       - name: Add CNAME
         run: echo "skills.flowcraft.systems" > public/CNAME
