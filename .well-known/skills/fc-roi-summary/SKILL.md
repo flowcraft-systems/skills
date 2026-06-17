@@ -8,6 +8,24 @@ license: MIT
 
 Append an ROI Summary section at the very end of every report. Use the next available section number (or no number for unnumbered sections — see agent instructions).
 
+## When to Load
+
+Load this skill when:
+
+- An agent has completed a task and needs to close its report with an ROI estimate
+- Any agent that produces a case file or investigation report should append this section
+- The user asks for an ROI summary at the end of a session or report
+
+Do NOT load for: conversational Q&A, one-line completions, or tasks where the manual effort would be under 15 minutes.
+
+## Boundaries & Constraints
+
+- Appends only — never modifies the body of the report above the ROI section
+- Estimates are conservative and evidence-based; never inflated for optics
+- The `## ROI Summary` heading is fixed; do not rename or suffix it
+- The extractor is a 3-column regex; do not add a 4th column to the table
+- Financial figures in the analytics dashboard are derived from calibrated baselines, not from hours × rate — honest hours are required
+
 ## Format
 
 ```markdown

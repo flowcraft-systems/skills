@@ -10,7 +10,7 @@ Scan the local `case-files/` directory and produce a structured, TUI-style ROI
 summary for a given time window. All data is read from case files the AI agents
 already wrote in this project.
 
-## When to load this skill
+## When to Load
 
 Load immediately when the user asks any of:
 
@@ -22,6 +22,15 @@ Load immediately when the user asks any of:
 - "ROI summary for [any time period]"
 
 Do NOT trigger for questions about how to set up skills or install tooling.
+
+## Boundaries & Constraints
+
+- Reads only from `case-files/` and `telemetry/sessions/` — never writes to either directory
+- Only covers the requested time window; never merges data silently across windows
+- Does not create, modify, or delete case files or session JSON
+- Does not make API calls or connect to external services
+- Deduplication favours the case file entry when both sources cover the same session
+- `hours_saved` is floored at 0; negative values are never reported
 
 ## Step 1 — Resolve the time window
 
@@ -192,6 +201,8 @@ Note: {missing_count} session(s) had no ROI table — counted in sessions but
 ---
 
 ## Edge cases
+
+Handle each of the following gracefully with a clear user-facing message rather than an error or empty output.
 
 ### No files found in window
 
