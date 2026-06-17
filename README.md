@@ -115,5 +115,6 @@ If your organization is ready for **managed enablement** — where FlowCraft han
 ## Get started
 
 ```bash
-npx skillkit@latest add flowcraft-systems/skills
+npx skillkit@latest npx skillkit@latest add flowcraft-systems/skills
+
 ```
