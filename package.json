@@ -34,7 +34,9 @@
     "node": ">=18"
   },
   "scripts": {
-    "validate": "npx skillkit@latest validate --all"
+    "validate": "npx skillkit@latest validate --all --strict",
+    "publish": "npx skillkit@latest publish .",
+    "publish:submit": "npx skillkit@latest publish submit"
   },
   "publishConfig": {
     "access": "public"

@@ -1,0 +1,118 @@
+name: Publish Skills to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'skills/**'
+      - 'agents/**'
+      - '.skillkit/**'
+      - 'package.json'
+      - '.github/workflows/publish-skills.yml'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  validate-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Validate skills
+        run: npx skillkit@latest validate --all --strict
+
+      - name: Generate .well-known structure
+        run: npx skillkit@latest publish .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: well-known
+          path: .well-known/
+          retention-days: 1
+
+  deploy-to-pages:
+    needs: validate-and-build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: https://skills.flowcraft.systems
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: well-known
+          path: public/.well-known
+
+      - name: Add CNAME
+        run: echo "skills.flowcraft.systems" > public/CNAME
+
+      - name: Add robots.txt
+        run: |
+          cat > public/robots.txt << 'EOF'
+          User-agent: *
+          Allow: /
+          Sitemap: https://skills.flowcraft.systems/sitemap.xml
+          EOF
+
+      - name: Add index.html
+        run: |
+          cat > public/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <title>FlowCraft Skills Registry</title>
+              <meta name="description" content="18 methodology skills and agents for brownfield codebases. Install via SkillKit.">
+              <style>
+                body { font-family: system-ui, sans-serif; max-width: 640px; margin: 60px auto; padding: 0 24px; color: #111; }
+                h1 { font-size: 1.5rem; }
+                code, pre { background: #f4f4f4; padding: 2px 6px; border-radius: 4px; font-size: 0.9rem; }
+                pre { padding: 12px 16px; overflow-x: auto; }
+                a { color: #0066cc; }
+              </style>
+            </head>
+            <body>
+              <h1>FlowCraft Skills</h1>
+              <p>18 methodology skills and agents for brownfield codebases — structured bug investigation, safe refactoring, and AI-first workflow discipline.</p>
+
+              <h2>Install</h2>
+              <pre>skillkit add https://skills.flowcraft.systems</pre>
+
+              <h2>Browse</h2>
+              <p>Skills are listed at <a href="/.well-known/skills/index.json"><code>/.well-known/skills/index.json</code></a></p>
+
+              <h2>Source</h2>
+              <p><a href="https://github.com/flowcraft-systems/skills">github.com/flowcraft-systems/skills</a></p>
+            </body>
+          </html>
+          EOF
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
