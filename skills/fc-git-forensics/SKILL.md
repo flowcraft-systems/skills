@@ -6,6 +6,7 @@ description: >
   defect or incident. Use when investigating bugs, reviewing incidents, understanding
   who changed what and when, or identifying high-churn files. Independently useful
   for any code archaeology task.
+license: MIT
 ---
 
 # Git Forensics

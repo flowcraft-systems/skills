@@ -6,6 +6,7 @@ description: >
   tier, and penalty deductions for gaps. Use when you need to quantify how
   confident you are in a diagnosis, hypothesis, root cause, or any analytical
   conclusion. Independently useful for any investigation or decision-making.
+license: MIT
 ---
 
 # Confidence Calibration

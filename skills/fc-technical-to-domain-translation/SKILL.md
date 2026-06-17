@@ -7,6 +7,7 @@ description: >
   stakeholder briefings, incident summaries, or any document where technical
   details must be conveyed without technical jargon. Independently useful for
   any technical-to-business communication.
+license: MIT
 ---
 
 # Technical-to-Domain Translation

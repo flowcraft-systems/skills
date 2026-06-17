@@ -6,6 +6,7 @@ description: >
   for quality, completeness, and accuracy. Provides a standardized scoring framework
   (0-10 per dimension), evidence verification protocol, and verdict system
   (approved / revisions_required / rejected). Independently useful for any review task.
+license: MIT
 ---
 
 # Adversarial Review

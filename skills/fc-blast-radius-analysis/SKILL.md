@@ -6,6 +6,7 @@ description: >
   constructs a risk table, and recommends mitigations. Use before any bug fix,
   refactoring, or feature change to understand what might break. Independently
   useful for any code change impact assessment.
+license: MIT
 ---
 
 # Blast Radius Analysis

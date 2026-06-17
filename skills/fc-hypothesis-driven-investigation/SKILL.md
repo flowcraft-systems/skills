@@ -7,6 +7,7 @@ description: >
   Use when investigating any bug, defect, or unexpected behavior — either manually
   (to reason through hypotheses before invoking an agent) or as part of an automated
   investigation pipeline. Independently useful for any debugging scenario.
+license: MIT
 ---
 
 # Hypothesis-Driven Investigation

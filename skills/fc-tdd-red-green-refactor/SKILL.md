@@ -6,6 +6,7 @@ description: >
   anti-patterns to detect and avoid fake tests. Use when writing bug fixes, new
   features, or any code where you want test-first discipline. Independently useful
   for any development task.
+license: MIT
 ---
 
 # TDD: Red-Green-Refactor

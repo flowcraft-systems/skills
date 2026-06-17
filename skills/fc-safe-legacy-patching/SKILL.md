@@ -6,6 +6,7 @@ description: >
   and seam identification. Use when you need to change untested legacy code
   without breaking existing behavior. Independently useful for any legacy
   codebase work.
+license: MIT
 ---
 
 # Safe Legacy Patching

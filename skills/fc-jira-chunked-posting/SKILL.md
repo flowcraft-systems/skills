@@ -1,106 +1,104 @@
 ---
-name: fc-jira-chunked-posting
+name: fc-chunked-posting
 description: >
-  Protocol for posting large agent reports as chunked Jira comments, respecting the 32,767-character limit with revision-guard deduplication. Use when posting any RCA, patch report, design packet, or large analysis to Jira via the fc-bug-byomkesh, fc-bug-sushruta, fc-design-vishwakarma, fc-code-review-dronacharya, incident-rca-reviewer, or fc-customer-briefing-narada agents.
+  Protocol for posting large agent reports to issue trackers or documentation
+  systems that enforce per-comment or per-message character limits. Covers
+  chunking strategy, chunk labeling, revision deduplication, and formatting
+  constraints. Use when posting any RCA, patch report, design packet, or large
+  analysis to a system with a character limit per entry.
+license: MIT
 ---
 
-# Skill: Jira Chunked Comment Posting
+# Skill: Chunked Report Posting
 
-When instructed to post a report as Jira comments, apply this protocol.
-Jira enforces a **32,767-character limit per comment**.
+When instructed to post a large report to an issue tracker or communication channel,
+apply this protocol to stay within per-entry character limits.
 
-## Step 0 — Detect existing report comments (revision guard)
+## Step 0 — Detect Existing Report (Revision Guard)
 
 Before posting anything, check whether this agent has already posted a report to this issue.
 
-1. Call `getJiraIssue` for the target Jira issue.
-2. Scan the `comments` array for any comment whose body starts with `**[{CHUNK_LABEL}` (using the `{CHUNK_LABEL}` for this agent — see Label reference below).
-3. Also look for the summary comment: any comment whose body contains `— Posted by {AGENT_NAME}` for this agent.
-4. Collect the `id` of **every** matching comment into an ordered list: `OLD_COMMENT_IDS`.
+1. Retrieve the existing comments or entries on the target issue.
+2. Scan for any entry whose body starts with `**[{CHUNK_LABEL}` for this agent/report type.
+3. Also look for a summary entry containing `— Posted by {AGENT_NAME}` for this agent.
+4. Collect the IDs of all matching entries into `OLD_ENTRY_IDS`.
 
-If `OLD_COMMENT_IDS` is empty → first run, skip to Step 1.
-If OLD_COMMENT_IDS is non-empty → this is a **revision run**. Proceed with Steps 1 and 2 as normal (post the new summary + new chunks), then execute Step 3 to remove the old comments.
+- If `OLD_ENTRY_IDS` is empty → first run, skip to Step 1.
+- If non-empty → revision run: post new content first (Steps 1 & 2), then remove old entries (Step 3).
 
-## Step 1 — Summary comment (always first)
+## Step 1 — Summary Entry (Always First)
 
-Using `addCommentToJiraIssue`, post a concise summary as comment #1.
-Required fields are defined per-agent (see agent instructions). Always include:
+Post a concise summary as the first entry. Always include:
 - A navigation hint when more chunks follow: `Full report recorded below in {N} comment(s) [{CHUNK_LABEL} 1/N … {CHUNK_LABEL} N/N]`
 - Footer: `— Posted by {AGENT_NAME}`
 
-## Step 2 — Full report (chunked)
+## Step 2 — Full Report (Chunked)
 
-Take the complete report markdown text. Split into chunks each ≤ **30,000 characters**:
-1. Split preferably at `## ` section boundaries. If a single section > 30,000 chars, split at the nearest paragraph break before the limit.
-2. Prepend each chunk: `**[{CHUNK_LABEL} {i}/{N} — {JIRA-ID}]**`
-3. Append each chunk: `*(continued in next comment…)*` — on the final chunk use `*(end of report)*` instead.
-4. Call `addCommentToJiraIssue` once per chunk, **sequentially**. Never batch or skip chunks.
+1. Determine the character limit per entry for your target system (e.g., 30,000 chars as a safe default below most limits).
+2. Split the complete report at `## ` section boundaries where possible. If a single section exceeds the limit, split at the nearest paragraph break before the limit.
+3. Prepend each chunk: `**[{CHUNK_LABEL} {i}/{N} — {ISSUE-ID}]**`
+4. Append each chunk: `*(continued in next comment…)*` — on the final chunk use `*(end of report)*` instead.
+5. Post chunks sequentially. Never batch or skip.
 
-If the full report fits within 30,000 chars, still post one labeled comment (`**[{CHUNK_LABEL} 1/1 — {JIRA-ID}]**`).
+If the full report fits within the limit, still post one labeled chunk (`**[{CHUNK_LABEL} 1/1 — {ISSUE-ID}]**`).
 
-## Step 3 — Delete superseded comments (revision run only)
+## Step 3 — Remove Superseded Entries (Revision Run Only)
 
-Only execute this step if `OLD_COMMENT_IDS` was non-empty (collected in Step 0).
+Only execute this step if `OLD_ENTRY_IDS` was non-empty.
 
-After **all** new comments have been successfully posted (Step 1 + Step 2 complete), delete each old comment sequentially:
+After all new entries are successfully posted, delete each old entry sequentially.
+Do not abort if a single deletion fails — log the failure and continue.
 
-For each `comment_id` in `OLD_COMMENT_IDS`:
-- Call `fetchAtlassian` with:
-  - `url`: `/rest/api/3/issue/{JIRA-ID}/comment/{comment_id}`
-  - `method`: `DELETE`
-- Do **not** abort if a single delete fails (log the failure and continue with remaining IDs).
+This ensures the new report is always visible before the old one disappears.
 
-This ensures the new report is always visible before the old one disappears. If the agent run is interrupted between posting and deleting, stale chunks will remain but will not interfere with the new ones (they will just be old, superseded comments).
+## Chunk Label Convention
 
-## Label reference
+Choose a label that identifies the report type clearly. Keep it short (2-4 words):
 
-| Agent | {CHUNK_LABEL} |
+| Report Type | Suggested {CHUNK_LABEL} |
 |---|---|
-| fc-bug-byomkesh | `RCA Part` |
-| fc-bug-sushruta | `Patch Part` |
-| fc-design-vishwakarma | `Design Packet Part` |
-| incident-rca-reviewer | `Incident Review Part` |
-| fc-customer-briefing-narada | `Customer Briefing Part` |
-| fc-customer-briefing-narada-reviewer | `Customer Briefing Part` |
+| RCA report | `RCA Part` |
+| Patch report | `Patch Part` |
+| Design packet | `Design Packet Part` |
+| Incident review | `Incident Review Part` |
+| Customer briefing | `Customer Briefing Part` |
+| Code review | `Code Review Part` |
+| Test design | `Test Design Part` |
 
 ---
 
-## Markdown Formatting Rules (CRITICAL)
+## Formatting Rules
 
-The `commentBody` field is interpreted as **Markdown** by the MCP server. Follow these rules exactly.
+Use only formatting your target system renders correctly. When in doubt, prefer plain Markdown:
 
-### ✅ Supported — use these
+### Safe Markdown (works most places)
 - **Bold**: `**text**`
 - *Italic*: `*text*`
-- Bullet lists: `- item` (blank line before list, blank line after)
+- Bullet lists: `- item` (blank line before and after)
 - Ordered lists: `1. item`
 - Headings: `## Section` / `### Subsection`
 - Inline code: `` `code` ``
-- Code fences: triple backtick ` ``` ` on its own line (language tag optional)
+- Code fences: triple backtick on its own line
 - Horizontal rule: `---`
 
-### ❌ Forbidden — never use these
-- **Jira wiki markup** — `h2.`, `h3.`, `{code}`, `{panel}`, `||header||`, `||` pipe headers. These render as literal text, not formatting.
-- **Markdown pipe tables** (`| col | col |` / `|---|---|`) — the MCP converter does **not** produce ADF table nodes; pipe characters appear as raw text.
+### Converting Tables to Safe Format
 
-### Converting tables to Markdown-safe format
+If your target system does not render Markdown pipe tables, convert them to one of:
 
-Every table in the report **must** be converted to one of the following formats before posting:
-
-**Option 1 — subsection + bullet list (preferred for ≤6 rows):**
+**Option 1 — Subsection + bullet list (≤6 rows):**
 ```
 **Section heading**
 - **Row label A:** value A
 - **Row label B:** value B
 ```
 
-**Option 2 — numbered list with bold labels (for ordered/ranked tables):**
+**Option 2 — Numbered list with bold labels (ordered/ranked tables):**
 ```
 1. **Label:** description
 2. **Label:** description
 ```
 
-**Option 3 — sub-heading per row (for tables with long cell content):**
+**Option 3 — Sub-heading per row (tables with long cell content):**
 ```
 #### Row Label A
 Description text for row A.
@@ -110,11 +108,3 @@ Description text for row B.
 ```
 
 Apply Option 1 for most tables. Use Option 3 for matrices or comparison tables where each row has several long fields.
-
----
-
-## Note
-
-The Atlassian MCP server does not support file attachments on Jira issues. Chunked comments are the report's permanent record on the issue.
-
-On revision runs, new chunks are posted first, then old chunks are deleted via `fetchAtlassian` DELETE. Jira records comment edits in its audit history; deleted comments are not recoverable, but the sequence (post-then-delete) guarantees the new report is always visible before the old one disappears.

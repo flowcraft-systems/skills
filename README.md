@@ -1,19 +1,29 @@
 # FlowCraft Skills
 
-> **A specialized AI engineering crew for brownfield codebases — inside GitHub Copilot and Claude Code. One command to install.**
+> **A specialized AI engineering crew for brownfield codebases. One command to install across 46+ AI agents.**
 
 [![npm](https://img.shields.io/npm/v/@flowcraft.systems/skills)](https://www.npmjs.com/package/@flowcraft.systems/skills)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
 
 ---
 
-## Install now
+## Install via SkillKit
+
+[SkillKit](https://github.com/rohitg00/skillkit) translates skills and agents automatically — Cursor, Windsurf, Claude Code, Gemini CLI, Codex, Amazon Q, and 40+ more.
 
 ```bash
-npx @flowcraft.systems/skills install
-```
+# Install for your current agent (auto-detected)
+npx skillkit@latest add flowcraft-systems/skills
 
-Pick your platform — **GitHub Copilot**, **Claude Code**, or **both** — and commit the result. Your whole team gets it automatically.
+# Install for a specific agent
+npx skillkit@latest add flowcraft-systems/skills --agent claude-code
+npx skillkit@latest add flowcraft-systems/skills --agent cursor
+npx skillkit@latest add flowcraft-systems/skills --agent github-copilot
+
+# Add to your team's .skills manifest for reproducible installs
+npx skillkit@latest manifest add flowcraft-systems/skills
+npx skillkit@latest manifest install   # teammates run this to sync
+```
 
 ---
 
@@ -23,118 +33,72 @@ Most AI tooling is designed for greenfield projects. Your team is working with s
 
 FlowCraft Skills gives your AI assistant **discipline** for exactly that environment — structured multi-pass workflows, proven methodologies, and automatic artifact management. The same system your best engineers would follow, encoded and repeatable.
 
-Works with **GitHub Copilot** (`.github/agents/` + `.github/skills/`) and **Claude Code** (`.claude/agents/` + `.claude/rules/`). Same agents, same skills, native format for each platform.
+Works with **any AI agent that SkillKit supports** — Claude Code, GitHub Copilot, Cursor, Windsurf, Gemini CLI, Codex, Amazon Q, and more. No hardcoded tool dependencies.
 
 ---
 
-## The problem it solves
+## What's included
 
-**For engineers:** Raw AI on a production bug gives you suggestions, not structure. No hypothesis ranking. No blast-radius analysis. No RCA artifact for your Jira ticket. No evidence trail.
+**18 methodology skills** — reusable playbooks your agent applies during any investigation or design session:
 
-**For architects:** AI with no context on your system makes dangerous recommendations. Unguided changes in brownfield code have hidden blast radius. Institutional knowledge disappears between onboardings.
+| Skill | When to use |
+| ----- | ----------- |
+| `fc-hypothesis-driven-investigation` | Structure debugging rather than grep-and-guess; generates ranked, falsifiable hypotheses |
+| `fc-blast-radius-analysis` | Before changing anything — understand every caller, dependency, and downstream effect |
+| `fc-safe-legacy-patching` | Michael Feathers' characterization tests, sprout methods, seam identification for untested code |
+| `fc-git-forensics` | Understand who changed what, when, and why — critical context in any long-lived codebase |
+| `fc-toyota-5-whys` | Root cause analysis that goes five levels deep with evidence at every step |
+| `fc-confidence-calibration` | Score how confident the evidence actually is before acting on a hypothesis |
+| `fc-tdd-red-green-refactor` | TDD discipline: fail the test first, write the minimal fix, refactor only once green |
+| `fc-adversarial-review` | Structured adversarial scoring of any agent output before it drives action |
+| `fc-evolutionary-architecture` | Incremental, fitness-function-driven architecture change with ADR generation |
+| `fc-testing-methodologies` | Risk-based, BDD, context-driven, and exploratory testing selection framework |
+| `fc-technical-to-domain-translation` | Translate technical findings into plain language for non-technical stakeholders |
+| `fc-case-file-conventions` | Standard artifact directory structure and naming for investigation outputs |
+| `fc-flowcraft-case-file` | Write structured case files after engineering sessions for ROI tracking |
+| `fc-chunked-posting` | Post large reports to issue trackers with character limits in labeled chunks |
+| `fc-roi-calculator` | Estimate time saved vs. manual effort for any AI-assisted engineering task |
+| `fc-roi-summary` | Generate ROI summary tables for inclusion in case file reports |
+| `fc-calculate-roi` | Calculate total ROI across a session or sprint |
 
-**For VPs of Engineering:** AI adoption is happening across your teams — but there is no way to know if outputs are trustworthy, whether teams are using it safely, or whether any of it is producing value your leadership can see.
-
-FlowCraft Skills gives each layer what it needs.
-
----
-
-## What just happened
-
-You installed **13 specialized AI agents** and **17 proven methodology skills** directly into your workspace — auto-formatted for whichever platform you chose.
-
-Not just autocomplete. An entire engineering crew:
+**11 orchestration agents** — role-based agents that compose the skills above into full workflows:
 
 | Agent | What it does |
 | ----- | ----------- |
-| **Bug Byomkesh** | Evidence-cited root cause analysis — hypothesis ranking, blast-radius, findings posted to Jira |
-| **Bug Sushruta** | Safe bug patching — fails a test first, writes the minimal fix, feature-flagged |
-| **Design Vishwakarma** | Architect coach — design options, ADRs, and fitness functions before you write a line |
-| **Dronacharya** | Code reviewer — posts structured PR feedback to GitHub and Jira, mentor tone |
-| **Test Case Chanakya** | QA designer — risk-based test suites synced directly to your test management system |
-| **Narada** | Customer communicator — jargon-free incident briefings for non-technical stakeholders |
-| **Incident RCA Reviewer** | Forensic auditor — independent review of production incident post-mortems |
+| **fc-bug-byomkesh** | Multi-pass evidence-cited RCA — hypothesis ranking, blast-radius, corrective/preventive actions |
+| **fc-bug-byomkesh-reviewer** | Adversarially validates the RCA before it drives a patch |
+| **fc-bug-sushruta** | TDD-driven patching — fails the test first, writes the minimal surgical fix |
+| **fc-bug-sushruta-reviewer** | Validates patch safety, test discipline, and deployment readiness |
+| **fc-design-vishwakarma** | Architect coach — multi-option design space, ADRs, and fitness functions |
+| **fc-design-vishwakarma-reviewer** | Checks option diversity and tradeoff rigor in architect packets |
+| **fc-code-review-dronacharya** | Coaching code review — alignment verification, 6 quality dimensions, warm mentor tone |
+| **fc-test-case-chanakya** | Risk-based test design — likelihood × impact matrix, methodology selection, coverage matrix |
+| **fc-test-case-chanakya-reviewer** | Validates test case quality and coverage completeness |
+| **fc-customer-briefing-narada** | Translates incident findings into plain-language briefings for non-technical stakeholders |
+| **fc-customer-briefing-narada-reviewer** | Checks for jargon, accuracy, and tone before publication |
 
-Every primary agent ships with a **Reviewer** that adversarially scores its output before anything is posted. Quality gates built in.
+Every primary agent ships with a **reviewer** that adversarially scores its output before anything is posted. Quality gates built in.
+
+---
+
+## A real workflow in two steps
+
+```text
+Invoke fc-bug-byomkesh with issue PROJ-1234
+Invoke fc-bug-sushruta with the RCA report from the previous step
+```
+
+Bug investigated → root cause cited with evidence → failing test written → minimal fix applied → patch report written.
 
 ---
 
 ## Your first 10 minutes
 
-Pick a real production bug from your backlog — a P2 or P3, something your team has looked at and knows the rough area:
+Pick a real production bug from your backlog — a P2 or P3, something your team has looked at and knows the rough area. Invoke fc-bug-byomkesh with the issue ID.
 
-```text
-@fc-bug-byomkesh PROJ-1234
-```
-
-The agent investigates the issue, ranks hypotheses with evidence, performs blast-radius analysis, generates corrective and preventive actions, and posts the full RCA directly to the Jira ticket — without leaving your editor.
+The agent investigates the issue, ranks hypotheses with evidence, performs blast-radius analysis, generates corrective and preventive actions, and writes a structured RCA report to your case file directory.
 
 Compare the output to what your team would have produced manually. That is the signal.
-
----
-
-## A real workflow in two lines
-
-```text
-@fc-bug-byomkesh PROJ-1234
-@fc-bug-sushruta .flowcraft/case-files/rca/2026-04-08--PROJ-1234--payment-failure/rca-report.md
-```
-
-Bug investigated → root cause cited with evidence → failing test written → minimal fix applied → patch report posted to Jira.
-
----
-
-## Skills built for legacy and brownfield work
-
-The methodology skills bundled here are particularly valuable for teams working in production codebases with accumulated complexity:
-
-| Skill | When to use |
-| ----- | ----------- |
-| `fc-safe-legacy-patching` | Michael Feathers' characterization tests, sprout methods, seam identification for untested code |
-| `fc-blast-radius-analysis` | Before changing anything — understand every caller, dependency, and downstream effect |
-| `fc-hypothesis-driven-investigation` | Structure debugging rather than grep-and-guess; generates ranked, falsifiable hypotheses |
-| `fc-git-forensics` | Understand who changed what, when, and why — critical context in any long-lived codebase |
-| `fc-toyota-5-whys` | Root cause analysis that goes five levels deep with evidence at every step |
-| `fc-confidence-calibration` | Score how confident the evidence actually is before acting on a hypothesis |
-
----
-
-## How it works
-
-A **skill** is a methodology playbook (`SKILL.md`) — hypothesis-driven investigation, TDD red-green-refactor, adversarial review scoring, git forensics. You can invoke any skill standalone in a Copilot chat for a quick structured answer, or let agents compose them automatically.
-
-An **agent** orchestrates the full workflow: loads the right skills at each pass, calls Jira and GitHub, enforces quality gates, and writes structured artifacts to your repo.
-
-**Start small.** Ask Copilot to load a single skill before a debugging session. Get structure for free. When the problem is complex enough, invoke the full agent with one command and let it run.
-
----
-
-## Full install options
-
-```bash
-# Interactive — choose GitHub Copilot, Claude Code, or both
-npx @flowcraft.systems/skills install
-
-# Non-interactive — install for a specific platform
-npx @flowcraft.systems/skills install --target copilot
-npx @flowcraft.systems/skills install --target claude
-npx @flowcraft.systems/skills install --target both
-
-# Preview before writing anything
-npx @flowcraft.systems/skills install --dry-run
-
-# Overwrite existing files (upgrade)
-npx @flowcraft.systems/skills install --force
-
-# Skills only / agents only
-npx @flowcraft.systems/skills install --skills-only
-npx @flowcraft.systems/skills install --agents-only
-
-# See what's bundled
-npx @flowcraft.systems/skills list
-```
-
-**Requirements:** Node.js ≥ 18, GitHub Copilot and/or Claude Code
 
 ---
 
@@ -151,7 +115,5 @@ If your organization is ready for **managed enablement** — where FlowCraft han
 ## Get started
 
 ```bash
-npx @flowcraft.systems/skills install
+npx skillkit@latest add flowcraft-systems/skills
 ```
-
-Commit the installed directory (`.github/` and/or `.claude/`). Done.

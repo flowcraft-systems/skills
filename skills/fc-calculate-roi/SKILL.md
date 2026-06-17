@@ -1,21 +1,21 @@
 ---
 name: fc-calculate-roi
 description: >
-  Scan local case files (.flowcraft/case-files/) and ROI telemetry
-  (.flowcraft/telemetry/sessions/) to produce a TUI-style ASCII ROI summary
+  Scan local case files (case-files/) and optional ROI telemetry
+  (telemetry/sessions/) to produce a TUI-style ASCII ROI summary
   for a specified time window. Use when asked to summarise productivity, show
   what AI delivered this week or month, or calculate ROI for any period.
   Triggers: "calculate ROI", "roi for last week", "what did AI deliver",
   "productivity summary", "show my ROI", "/fc-calculate-roi",
   "how much did we save", "weekly ROI", "monthly ROI".
-argument-hint: 'Time window — e.g. "last week", "last 30 days", "this month", "Apr 1–Apr 24"'
+license: MIT
 ---
 
 # Skill: FC Calculate ROI
 
-Scan the local `.flowcraft/` directory and produce a structured, TUI-style ROI
-summary for a given time window. No cloud account required — all data is read
-from files the AI agents already wrote on your machine.
+Scan the local `case-files/` directory and produce a structured, TUI-style ROI
+summary for a given time window. All data is read from case files the AI agents
+already wrote in this project.
 
 ## When to load this skill
 
@@ -28,8 +28,7 @@ Load immediately when the user asks any of:
 - "How many hours did we save this week?"
 - "ROI summary for [any time period]"
 
-Do NOT trigger for questions about how to set up FlowCraft or how to install
-the CLI.
+Do NOT trigger for questions about how to set up skills or install tooling.
 
 ---
 
@@ -58,7 +57,7 @@ your output.
 Search for all markdown files matching:
 
 ```
-.flowcraft/case-files/**/*.md
+case-files/**/*.md
 ```
 
 For each file:
@@ -95,7 +94,7 @@ For each file:
 Search for all JSON files matching:
 
 ```
-.flowcraft/telemetry/sessions/*.json
+telemetry/sessions/*.json
 ```
 
 For each file:
@@ -185,7 +184,7 @@ hours, `min` for minutes.
 │  {agent} · {date} · {slug}                               │
 │  {hours_saved}h saved in {agent_minutes} min  ({ratio}×) │
 └──────────────────────────────────────────────────────────┘
-(Scanned {case_file_count} case files + {json_count} session JSON · .flowcraft/)
+(Scanned {case_file_count} case files + {json_count} session JSON · case-files/)
 ```
 
 Omit the "Top session" block if `session_count` is 0.
@@ -212,22 +211,16 @@ No sessions found in {window_label} ({start_date}–{end_date}).
 
 To start generating ROI data, run any agent task (code review, bug
 investigation, architecture design, etc.) — the agent will write a case file
-to .flowcraft/case-files/ automatically.
-
-  Install the skills CLI:
-    npx @flowcraft.systems/skills install
+to case-files/ automatically.
 ```
 
-### `.flowcraft/` directory does not exist
+### No `case-files/` directory found
 
 ```
-No .flowcraft/ directory found in this workspace.
+No case-files/ directory found in this workspace.
 
-To start tracking ROI locally, run:
-  npx @flowcraft.systems/skills install
-
-Then ask any AI agent to complete a task — it will write structured case files
-that this skill can summarise.
+Start by asking any agent to complete a task — it will write structured case
+files that this skill can summarise.
 ```
 
 ### Partial data (some agents missing ROI tables)

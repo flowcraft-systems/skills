@@ -1,12 +1,12 @@
 {
   "name": "@flowcraft.systems/skills",
-  "version": "1.0.5",
-  "description": "FlowCraft AI agents for brownfield and legacy codebases — structured bug investigation, safe refactoring, and AI-first workflow discipline. Works with GitHub Copilot & Claude Code.",
+  "version": "2.0.0",
+  "description": "FlowCraft methodology skills and agents for brownfield codebases — structured bug investigation, safe refactoring, and AI-first workflow discipline. Universal via SkillKit.",
   "keywords": [
-    "github-copilot",
-    "copilot-agents",
     "ai-agents",
     "skills",
+    "skillkit",
+    "agent-skills",
     "flowcraft",
     "legacy-code",
     "brownfield",
@@ -14,22 +14,27 @@
     "refactoring",
     "root-cause-analysis",
     "enterprise",
-    "engineering-productivity"
+    "engineering-productivity",
+    "cursor",
+    "windsurf",
+    "gemini-cli",
+    "claude-code",
+    "codex",
+    "amazon-q"
   ],
   "homepage": "https://flowcraft.systems",
   "license": "MIT",
   "author": "FlowCraft Systems",
-  "bin": {
-    "flowcraft-skills": "bin/cli.js"
-  },
   "files": [
-    "bin/",
-    ".github/agents/",
-    ".github/skills/",
+    "skills/",
+    "agents/",
     "docs/"
   ],
   "engines": {
     "node": ">=18"
+  },
+  "scripts": {
+    "validate": "npx skillkit@latest validate --all"
   },
   "publishConfig": {
     "access": "public"

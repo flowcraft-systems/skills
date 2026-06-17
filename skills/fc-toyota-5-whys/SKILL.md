@@ -7,6 +7,7 @@ description: >
   each level. Use for bug investigations, incident post-mortems, process failures,
   or any situation requiring deep causal analysis. Independently useful for any
   root cause analysis.
+license: MIT
 ---
 
 # Toyota 5 Whys

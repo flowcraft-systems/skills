@@ -2,18 +2,19 @@
 name: fc-roi-calculator
 description: >
   Calculate and emit time-savings ROI after every meaningful agent session.
-  Write a structured JSON file to the local telemetry buffer so flowcraft
-  observe can route it to the dashboard without polluting git history.
+  Write a structured JSON file to the local telemetry directory so effort
+  can be tracked and summarised over time.
   WHEN: finishing any task — code review, bug investigation, feature design,
   root-cause analysis, test writing, or documentation. Do NOT trigger for
   trivial single-line completions or refusals.
+license: MIT
 ---
 
 # Skill: ROI Calculator
 
 At the end of every meaningful session, write a session JSON file and briefly
-confirm the estimate in your response. This feeds the flowcraft observe
-dashboard so engineering leadership can see the ROI of AI tooling.
+confirm the estimate in your response. This creates a local record of effort
+saved that can be summarised using fc-calculate-roi.
 
 ## What counts as a meaningful session
 
@@ -34,10 +35,10 @@ where an honest estimate of manual effort would be under 15 minutes.
 Write a JSON file to:
 
 ```
-.flowcraft/telemetry/sessions/{ISO-8601-timestamp-UTC}.json
+telemetry/sessions/{ISO-8601-timestamp-UTC}.json
 ```
 
-Example path: `.flowcraft/telemetry/sessions/2026-04-04T14-30-00Z.json`
+Example path: `telemetry/sessions/2026-04-04T14-30-00Z.json`
 
 This directory is gitignored. Do not reference the file in your response or
 commit it. It is ephemeral telemetry, not a deliverable.
@@ -70,8 +71,8 @@ commit it. It is ephemeral telemetry, not a deliverable.
 | `manual_hours_equivalent` | Conservative estimate — see reference table |
 | `agent_minutes` | Your wall-clock session time in minutes |
 | `session_summary` | One sentence, max 150 chars. Include concrete artifact or finding. No code, no secrets. |
-| `repo` | Read from `.flowcraft/config.yaml` → `repo`. Do not infer. |
-| `team` | Read from `.flowcraft/config.yaml` → `team`. Do not infer. |
+| `repo` | Read from `case-files/config.yaml` → `repo`. Do not infer. |
+| `team` | Read from `case-files/config.yaml` → `team`. Do not infer. |
 | `is_synthetic` | Always `false` for real sessions. Only `true` for verification test spans. |
 
 ## Task type vocabulary
@@ -107,10 +108,8 @@ time a senior engineer would spend doing this work correctly and thoroughly.
 Use the midpoint for typical scope. Go high only when blast radius, cross-repo
 tracing, or competing hypotheses genuinely expanded the work.
 
-**Critical:** Write honest hours. The financial value on the dashboard is derived
-from calibrated per-task baselines — it is NOT calculated from your hours × rate.
-Your estimate feeds the qualitative narrative. Inflate it and you corrupt the
-signal leadership depends on.
+**Critical:** Write honest hours. Inflating estimates corrupts the signal
+and makes the ROI summary meaningless for comparing sessions over time.
 
 ## Content policy for session_summary
 

@@ -2,6 +2,7 @@
 name: fc-roi-summary
 description: >
   Append a time-savings ROI summary table and qualitative human-under-duress counterfactual analysis to agent reports. Use when finalizing any fc-bug-byomkesh RCA, fc-bug-sushruta patch, fc-design-vishwakarma design packet, fc-code-review-dronacharya review, incident RCA review, or fc-test-case-chanakya test design report.
+license: MIT
 ---
 
 # Skill: ROI Summary

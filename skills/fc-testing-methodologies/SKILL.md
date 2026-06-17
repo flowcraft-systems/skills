@@ -2,6 +2,7 @@
 name: fc-testing-methodologies
 description: >
   Modern software testing frameworks for your project: Risk-Based Testing with risk matrices and test management field mapping, Context-Driven Testing, Exploratory Testing with session-based approach, Model-Based Testing, and Behavior-Driven Development. Use when designing or reviewing test cases for any project feature.
+license: MIT
 ---
 
 # Testing Methodologies Skill

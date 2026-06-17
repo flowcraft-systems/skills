@@ -7,6 +7,7 @@ description: >
   features, evaluating architectural options, writing ADRs, or defining fitness
   functions to prevent architectural regression. Independently useful for any
   design decision.
+license: MIT
 ---
 
 # Evolutionary Architecture
