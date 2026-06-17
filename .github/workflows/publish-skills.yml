@@ -38,7 +38,7 @@ jobs:
         run: skillkit validate --all --strict
 
       - name: Validate agents
-        run: skillkit agent validate
+        run: skillkit agent validate --all
 
       - name: Test skills
         run: skillkit test --json > results.json || true
