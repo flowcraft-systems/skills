@@ -32,15 +32,21 @@ npx skillkit@latest manifest install   # teammates run this to sync
 Agents install through a **separate channel** — `skillkit add` discovers skills only, so the 11 orchestration agents need one extra step. This keeps them as true subagents (preserving each agent's `model` and reviewer pairing) rather than flattening them into skills.
 
 ```bash
-# Fetch just the agent definitions...
-npx degit flowcraft-systems/skills/agents fc-agents
+# Fetch the agent definitions into a temp directory...
+npx degit flowcraft-systems/skills/agents /tmp/fc-agents
 
 # ...then translate them into your IDE's agent format
-npx skillkit@latest agent translate --source fc-agents --all --to claude-code
+
+# Project-scoped (run from your project root — agents land in .claude/agents/)
+npx skillkit@latest agent translate --source /tmp/fc-agents --all --to claude-code
+
+# Global (available in every project)
+npx skillkit@latest agent translate --source /tmp/fc-agents --all --to claude-code --output ~/.claude/agents
+
 #   ...or --to cursor / --to codex / any SkillKit-supported agent
 ```
 
-Each primary agent and its reviewer (11 files total) lands in your IDE's agent directory — e.g. `.claude/agents/fc-bug-byomkesh.md`.
+Each primary agent and its reviewer (11 files total) lands in your IDE's agent directory. **Run from your project root** for a project-scoped install, or pass `--output ~/.claude/agents` to make them available globally.
 
 ---
 
@@ -111,9 +117,19 @@ Bug investigated → root cause cited with evidence → failing test written →
 
 ## Your first 10 minutes
 
-Pick a real production bug from your backlog — a P2 or P3, something your team has looked at and knows the rough area. Invoke fc-bug-byomkesh with the issue ID.
+Pick a real production bug from your backlog — a P2 or P3, something your team has looked at and knows the rough area.
 
-The agent investigates the issue, ranks hypotheses with evidence, performs blast-radius analysis, generates corrective and preventive actions, and writes a structured RCA report to your case file directory.
+**Before invoking:** fc-bug-byomkesh's first pass reads the issue in full. If your issue tracker is Jira, Linear, or GitHub Issues, install the matching MCP server so the agent can fetch issue data directly:
+
+| Tracker | MCP server |
+|---------|-----------|
+| Jira | [mcp-atlassian](https://github.com/sooperset/mcp-atlassian) |
+| Linear | [linear-mcp](https://github.com/jerhadf/linear-mcp) |
+| GitHub Issues | [github MCP server](https://github.com/github/github-mcp-server) |
+
+Without an MCP server, paste the issue description directly when you invoke the agent — it works from plain text too.
+
+Invoke fc-bug-byomkesh with the issue ID (or description). The agent investigates, ranks hypotheses with evidence, performs blast-radius analysis, generates corrective and preventive actions, and writes a structured RCA report to your case file directory.
 
 Compare the output to what your team would have produced manually. That is the signal.
 
@@ -136,6 +152,6 @@ If your organization is ready for **managed enablement** — where FlowCraft han
 npx skillkit@latest add flowcraft-systems/skills
 
 # Agents
-npx degit flowcraft-systems/skills/agents fc-agents
-npx skillkit@latest agent translate --source fc-agents --all --to claude-code
+npx degit flowcraft-systems/skills/agents /tmp/fc-agents
+npx skillkit@latest agent translate --source /tmp/fc-agents --all --to claude-code
 ```
